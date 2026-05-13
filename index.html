@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الياسي للورود والهدايا | Alyasi Flowers & Gifts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #2d5a3d;
+      --gold:   #c8a96e;
+      --pink:   #d4748a;
+      --cream:  #faf8f5;
+      --dark:   #1a1a1a;
+      --muted:  #6b6b6b;
+      --card:   #ffffff;
+      --border: #ede8e0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(250,248,245,.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo img { height: 52px; object-fit: contain; }
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--green);
+      display: none;
+    }
+    .nav-links {
+      display: flex; gap: 28px; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--dark);
+      font-size: 0.95rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-wa {
+      background: #25d366; color: #fff;
+      border: none; border-radius: 50px;
+      padding: 10px 22px; font-size: 0.9rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-wa:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,.4); }
+    .nav-wa svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      background:
+        linear-gradient(160deg, rgba(45,90,61,.08) 0%, rgba(200,169,110,.08) 100%),
+        var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(212,116,138,.12) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(45,90,61,.10) 0%, transparent 50%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 700px; margin: auto; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,169,110,.15);
+      color: var(--gold);
+      border: 1px solid rgba(200,169,110,.4);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .hero-logo {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: #fff;
+      padding: 10px;
+      box-shadow: 0 8px 40px rgba(45,90,61,.15);
+      margin: 0 auto 28px;
+      display: block;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      line-height: 1.25;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted); margin-bottom: 12px; font-weight: 400;
+    }
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: var(--dark); margin-bottom: 40px; line-height: 1.7;
+      max-width: 560px; margin-left: auto; margin-right: auto;
+    }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--green); color: #fff;
+      border: none; border-radius: 50px;
+      padding: 14px 36px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: transform .2s, box-shadow .2s;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(45,90,61,.35); }
+    .btn-outline {
+      background: transparent; color: var(--green);
+      border: 2px solid var(--green); border-radius: 50px;
+      padding: 13px 32px; font-size: 1rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all .2s;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .btn-outline:hover { background: var(--green); color: #fff; }
+    .hero-scroll {
+      margin-top: 56px;
+      display: flex; flex-direction: column; align-items: center;
+      color: var(--muted); font-size: 0.8rem; gap: 8px;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll span { font-size: 1.3rem; }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--green);
+      padding: 40px 24px;
+      display: flex; justify-content: center; gap: 0; flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center; padding: 16px 40px;
+      border-left: 1px solid rgba(255,255,255,.15);
+      color: #fff;
+    }
+    .stat-item:last-child { border-right: 1px solid rgba(255,255,255,.15); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold); }
+    .stat-label { font-size: 0.85rem; opacity: .8; margin-top: 4px; }
+
+    /* ── SECTION HEADER ── */
+    .section { padding: 80px 24px; max-width: 1200px; margin: auto; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-badge {
+      display: inline-block;
+      color: var(--gold); font-size: 0.8rem;
+      letter-spacing: 3px; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--green); margin-bottom: 16px;
+    }
+    .section-line {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      border-radius: 2px; margin: 0 auto 20px;
+    }
+    .section-desc { color: var(--muted); font-size: 1.05rem; max-width: 540px; margin: auto; line-height: 1.8; }
+
+    /* ── SERVICES ── */
+    .services-bg { background: #f4f0ea; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(45,90,61,.12); }
+    .service-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, rgba(45,90,61,.1), rgba(200,169,110,.15));
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 20px;
+    }
+    .service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
+    .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: var(--card);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.10); }
+    .product-img-wrap {
+      height: 240px; overflow: hidden; position: relative;
+      background: #f0ebe3;
+    }
+    .product-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+    .product-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--green); color: #fff;
+      border-radius: 50px; padding: 5px 14px;
+      font-size: 0.78rem; font-weight: 700;
+    }
+    .product-body { padding: 20px 20px 22px; }
+    .product-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .product-body p { font-size: 0.88rem; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--green);
+    }
+    .product-price small { font-size: 0.75rem; font-family: 'Tajawal', sans-serif; color: var(--muted); }
+    .btn-order {
+      background: var(--green); color: #fff;
+      border: none; border-radius: 50px;
+      padding: 8px 18px; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      transition: background .2s;
+      font-family: 'Tajawal', sans-serif;
+      white-space: nowrap;
+    }
+    .btn-order:hover { background: #1f4029; }
+
+    /* ── WHY US ── */
+    .why-bg { background: linear-gradient(135deg, var(--green) 0%, #1f4029 100%); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    .why-item { text-align: center; color: #fff; }
+    .why-icon {
+      width: 68px; height: 68px;
+      background: rgba(255,255,255,.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 18px;
+      border: 2px solid rgba(200,169,110,.5);
+    }
+    .why-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-item p { font-size: 0.88rem; opacity: .75; line-height: 1.7; }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; position: relative; }
+    .step {
+      text-align: center; padding: 24px 32px;
+      flex: 1; min-width: 200px; max-width: 280px;
+      position: relative;
+    }
+    .step::after {
+      content: '←';
+      position: absolute; left: -12px; top: 44px;
+      font-size: 1.6rem; color: var(--gold);
+    }
+    .step:last-child::after { display: none; }
+    .step-num {
+      width: 60px; height: 60px;
+      background: linear-gradient(135deg, var(--green), #4a8a60);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      margin: 0 auto 18px;
+      box-shadow: 0 6px 20px rgba(45,90,61,.3);
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── GALLERY STRIP ── */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 80px;
+    }
+    .gallery-strip img {
+      width: 100%; aspect-ratio: 1;
+      object-fit: cover; border-radius: 16px;
+      transition: transform .3s;
+      cursor: pointer;
+    }
+    .gallery-strip img:hover { transform: scale(1.03); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-bg { background: #f4f0ea; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .testi-card {
+      background: var(--card); border-radius: 20px; padding: 32px 28px;
+      border: 1px solid var(--border);
+    }
+    .testi-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 16px; }
+    .testi-text { font-size: 0.95rem; color: var(--dark); line-height: 1.8; margin-bottom: 20px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 1.1rem;
+    }
+    .testi-author-info strong { display: block; font-size: 0.92rem; }
+    .testi-author-info span { font-size: 0.8rem; color: var(--muted); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--pink) 0%, #c05070 100%);
+      padding: 70px 24px;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+    .cta-banner p { font-size: 1.05rem; opacity: .85; margin-bottom: 36px; }
+    .cta-wa-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #fff; color: var(--green);
+      border: none; border-radius: 50px;
+      padding: 16px 44px; font-size: 1.1rem; font-weight: 800;
+      cursor: pointer; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .cta-wa-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(0,0,0,.2); }
+    .cta-wa-btn svg { width: 22px; fill: #25d366; flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .contact-card {
+      background: var(--card); border-radius: 20px; padding: 32px 24px;
+      text-align: center; border: 1px solid var(--border);
+      transition: transform .2s;
+    }
+    .contact-card:hover { transform: translateY(-4px); }
+    .contact-card a { text-decoration: none; color: inherit; }
+    .contact-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .contact-card h3 { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .contact-card p { font-size: 1rem; font-weight: 600; color: var(--dark); }
+    .contact-card p.sub { font-size: 0.85rem; color: var(--muted); font-weight: 400; margin-top: 4px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 40px 24px;
+    }
+    footer img { height: 50px; object-fit: contain; filter: brightness(2); margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto; }
+    footer p { font-size: 0.88rem; margin-bottom: 6px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin: 16px 0; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,.5); text-decoration: none; font-size: 0.85rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── FLOATING WA ── */
+    .float-wa {
+      position: fixed; bottom: 28px; left: 28px; z-index: 200;
+      width: 58px; height: 58px;
+      background: #25d366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.5);
+      text-decoration: none;
+      transition: transform .2s;
+      animation: pulse 2.5s infinite;
+    }
+    .float-wa:hover { transform: scale(1.12); animation: none; }
+    .float-wa svg { width: 30px; fill: #fff; }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 6px 24px rgba(37,211,102,.5); }
+      50% { box-shadow: 0 6px 40px rgba(37,211,102,.8); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); }
+      .step::after { display: none; }
+      .stat-item { padding: 16px 24px; }
+    }
+    @media (max-width: 480px) {
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ FLOATING WHATSAPP ══ -->
+<a href="https://wa.me/96891114035" target="_blank" class="float-wa" title="تواصل عبر واتساب">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo">
+    <img src="https://drive.google.com/thumbnail?id=1YYcrJDbT5FzW18GLjZljRWP8m6d3FghL&sz=w200" alt="Alyasi Flowers Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+    <span>الياسي</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">خدماتنا</a></li>
+    <li><a href="#products">منتجاتنا</a></li>
+    <li><a href="#how">كيف نعمل</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+  <a href="https://wa.me/96891114035" target="_blank" class="nav-wa">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    اطلب الآن
+  </a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">✦ توصيل لجميع محافظة مسقط ✦</div>
+    <img
+      src="https://drive.google.com/thumbnail?id=1YYcrJDbT5FzW18GLjZljRWP8m6d3FghL&sz=w400"
+      alt="Alyasi Flowers Logo"
+      class="hero-logo"
+      onerror="this.src='https://placehold.co/130x130/2d5a3d/c8a96e?text=AF'"
+    />
+    <h1>الياسي<br/><span>للورود والهدايا</span></h1>
+    <p class="hero-sub">Alyasi Flowers & Gifts — Muscat, Oman</p>
+    <p class="hero-tagline">
+      نصنع لكم لحظات لا تُنسى بأرقى الباقات الطبيعية والتنسيقات الفاخرة،
+      لأن كل مناسبة تستحق لمسة من الجمال.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/96891114035" target="_blank" class="btn-primary">
+        <svg width="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        اطلب عبر واتساب
+      </a>
+      <a href="#products" class="btn-outline">تصفح منتجاتنا</a>
+    </div>
+    <div class="hero-scroll">
+      <span>↓</span>
+      اكتشف المزيد
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">+7</div>
+    <div class="stat-label">سنوات خبرة</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">+500</div>
+    <div class="stat-label">عميل راضٍ</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">+50</div>
+    <div class="stat-label">نوع باقة</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">24h</div>
+    <div class="stat-label">توصيل سريع</div>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══ -->
+<div class="services-bg" id="services">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-badge">خدماتنا</div>
+      <h2 class="section-title">كل ما تحتاجه في مكان واحد</h2>
+      <div class="section-line"></div>
+      <p class="section-desc">نقدم مجموعة متكاملة من الخدمات لجميع مناسباتكم الخاصة</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">💐</div>
+        <h3>باقات الورود</h3>
+        <p>تنسيق باقات الزهور الطبيعية والصناعية بأشكال متنوعة وألوان رائعة</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎁</div>
+        <h3>تغليف الهدايا</h3>
+        <p>تغليف احترافي فاخر يناسب جميع المناسبات والأعياد</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎈</div>
+        <h3>بالونات هيليوم</h3>
+        <p>بالونات هيليوم ملونة وأقواس بالونات مميزة لجميع المناسبات</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💍</div>
+        <h3>زفاف وأعراس</h3>
+        <p>مسكة العروس وتزيين السيارات وتنسيق القاعات بأبهى الصور</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🍫</div>
+        <h3>شوكولاتة وهدايا</h3>
+        <p>تشكيلة متنوعة من الشوكولاتة الفاخرة ومستلزمات المواليد</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>تزيين المناسبات</h3>
+        <p>تزيين غرف النوم والقاعات والمحلات التجارية لجميع المناسبات</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GALLERY STRIP ══ -->
+<div style="max-width:1200px;margin:60px auto 0;padding:0 24px;">
+  <div class="gallery-strip">
+    <img src="https://drive.google.com/thumbnail?id=15CumSvouZBNr1lyYpCQtQhn9sVDyogsS&sz=w600" alt="باقة ورود" onerror="this.src='https://placehold.co/300x300/f0ebe3/2d5a3d?text=🌸'" />
+    <img src="https://drive.google.com/thumbnail?id=15wxqb-4c3sf7WF_3KZwPmQ2KWmB6H_1r&sz=w600" alt="باقة ورود" onerror="this.src='https://placehold.co/300x300/f0ebe3/d4748a?text=🌹'" />
+    <img src="https://drive.google.com/thumbnail?id=16RTm_uhzn92NfkrqjbtX_qPMqwvsb85s&sz=w600" alt="تنسيق زهور" onerror="this.src='https://placehold.co/300x300/f0ebe3/c8a96e?text=💐'" />
+    <img src="https://drive.google.com/thumbnail?id=1682h3Fg_UN32EBcKP8IbrXQlujhqrC2P&sz=w600" alt="تنسيق زهور" onerror="this.src='https://placehold.co/300x300/f0ebe3/2d5a3d?text=🌺'" />
+  </div>
+</div>
+
+<!-- ══ PRODUCTS ══ -->
+<div class="section" id="products">
+  <div class="section-header">
+    <div class="section-badge">منتجاتنا</div>
+    <h2 class="section-title">تشكيلتنا المميزة</h2>
+    <div class="section-line"></div>
+    <p class="section-desc">اختر من بين تشكيلتنا المتنوعة أو اطلب تنسيقك الخاص</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1f0xWtKIDwCDH0P3h0BRi4C4yc5l5Ybqy&sz=w600" alt="باقة ورد دائري" onerror="this.src='https://placehold.co/400x400/f0ebe3/2d5a3d?text=💐'" />
+        <span class="product-badge">الأكثر طلباً</span>
+      </div>
+      <div class="product-body">
+        <h3>باقة ورد تنسيق دائري</h3>
+        <p>باقة أنيقة بتنسيق دائري مميز، مثالية للهدايا والمناسبات</p>
+        <div class="product-footer">
+          <div class="product-price">10 <small>ريال</small></div>
+          <a href="https://wa.me/96891114035?text=مرحبا، أريد طلب: باقة ورد تنسيق دائري" target="_blank" class="btn-order">اطلب الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1e7UvoJA8GKXCkBa2rswAe2bJc2snEWVp&sz=w600" alt="باقة يد" onerror="this.src='https://placehold.co/400x400/f0ebe3/d4748a?text=🌸'" />
+      </div>
+      <div class="product-body">
+        <h3>باقة يد تنسيق</h3>
+        <p>باقة يد عصرية بتنسيق احترافي، مثالية لجميع المناسبات</p>
+        <div class="product-footer">
+          <div class="product-price">9 <small>ريال</small></div>
+          <a href="https://wa.me/96891114035?text=مرحبا، أريد طلب: باقة يد تنسيق" target="_blank" class="btn-order">اطلب الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1f9zY7TijiQJIdPRq9n9fYm8CYKqoys3n&sz=w600" alt="فازة ورد صغيرة" onerror="this.src='https://placehold.co/400x400/f0ebe3/c8a96e?text=🌺'" />
+      </div>
+      <div class="product-body">
+        <h3>فازة ورد — حجم صغير</h3>
+        <p>فازة ورد أنيقة تضفي جمالاً على مكتبك أو منزلك</p>
+        <div class="product-footer">
+          <div class="product-price">10 <small>ريال</small></div>
+          <a href="https://wa.me/96891114035?text=مرحبا، أريد طلب: فازة ورد صغيرة" target="_blank" class="btn-order">اطلب الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1f8_JzrgasDOiBWgFf46yfVWgxcFOMraH&sz=w600" alt="فازة ورد وسط" onerror="this.src='https://placehold.co/400x400/f0ebe3/2d5a3d?text=🌹'" />
+      </div>
+      <div class="product-body">
+        <h3>فازة ورد — حجم وسط</h3>
+        <p>فازة وسط رائعة بورود طازجة ، مثالية لتزيين الأماكن الفاخرة</p>
+        <div class="product-footer">
+          <div class="product-price">18 <small>ريال</small></div>
+          <a href="https://wa.me/96891114035?text=مرحبا، أريد طلب: فازة ورد وسط" target="_blank" class="btn-order">اطلب الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1eg79n-5ifGQVHNKkNCVfxXuAGkh9iour&sz=w600" alt="هدية رجالية" onerror="this.src='https://placehold.co/400x400/f0ebe3/2d5a3d?text=🎁'" />
+        <span class="product-badge">هدية</span>
+      </div>
+      <div class="product-body">
+        <h3>هدية رجالية</h3>
+        <p>تشكيلة هدايا رجالية راقية تعبر عن التقدير والاحترام</p>
+        <div class="product-footer">
+          <div class="product-price">15 <small>ريال</small></div>
+          <a href="https://wa.me/96891114035?text=مرحبا، أريد طلب: هدية رجالية" target="_blank" class="btn-order">اطلب الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1dqzL0Te5s5oGYBoNDxnlGupP1qqPBPC1&sz=w600" alt="هدية نسائية" onerror="this.src='https://placehold.co/400x400/f0ebe3/d4748a?text=🎀'" />
+        <span class="product-badge">مميز</span>
+      </div>
+      <div class="product-body">
+        <h3>هدية نسائية متكاملة</h3>
+        <p>مجموعة هدايا نسائية فاخرة بتغليف أنيق يسعد من تحب</p>
+        <div class="product-footer">
+          <div class="product-price">29 <small>ريال</small></div>
+          <a href="https://wa.me/96891114035?text=مرحبا، أريد طلب: هدية نسائية متكاملة" target="_blank" class="btn-order">اطلب الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=1ek4mnF3gH0-J1V73sDvzmhRleZPKSpmw&sz=w600" alt="هدية رجالية متكاملة" onerror="this.src='https://placehold.co/400x400/f0ebe3/c8a96e?text=🎁'" />
+        <span class="product-badge">لوكس</span>
+      </div>
+      <div class="product-body">
+        <h3>هدية رجالية متكاملة</h3>
+        <p>طقم هدايا رجالي متكامل فاخر، الاختيار المثالي للمناسبات الكبيرة</p>
+        <div class="product-footer">
+          <div class="product-price">29 <small>ريال</small></div>
+          <a href="https://wa.me/96891114035?text=مرحبا، أريد طلب: هدية رجالية متكاملة لوكس" target="_blank" class="btn-order">اطلب الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="https://drive.google.com/thumbnail?id=15sXk7ikj4sXCjb-8xOJ8yCWDt_g8RU_-&sz=w600" alt="باقة مخصصة" onerror="this.src='https://placehold.co/400x400/2d5a3d/c8a96e?text=✨'" />
+      </div>
+      <div class="product-body">
+        <h3>باقة مخصصة حسب الطلب</h3>
+        <p>صمم باقتك الخاصة — اختر الألوان والزهور والحجم الذي يناسبك</p>
+        <div class="product-footer">
+          <div class="product-price" style="color:var(--gold)">حسب الطلب</div>
+          <a href="https://wa.me/96891114035?text=مرحبا، أريد طلب باقة مخصصة" target="_blank" class="btn-order" style="background:var(--gold)">استفسر</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ WHY US ══ -->
+<div class="why-bg">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-badge" style="color:var(--gold)">لماذا نحن</div>
+      <h2 class="section-title" style="color:#fff">لماذا تختار الياسي؟</h2>
+      <div class="section-line"></div>
+      <p class="section-desc" style="color:rgba(255,255,255,.7)">نضع ثقتك في مقدمة أولوياتنا لنقدم لك أفضل تجربة</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">🚗</div>
+        <h3>توصيل سريع</h3>
+        <p>نوصل طلباتك لجميع أنحاء محافظة مسقط في أسرع وقت</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🌿</div>
+        <h3>ورود طازجة</h3>
+        <p>نختار أجود أنواع الزهور الطازجة لضمان أطول فترة نضارة</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">✨</div>
+        <h3>تصاميم حصرية</h3>
+        <p>تنسيقات فريدة ومبتكرة يصممها فريقنا المتخصص بحرفية عالية</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">💬</div>
+        <h3>خدمة ممتازة</h3>
+        <p>فريق دعم متاح عبر واتساب للإجابة على استفساراتك</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🎀</div>
+        <h3>تغليف فاخر</h3>
+        <p>تغليف احترافي يليق بمناسباتكم الثمينة ويُبهج من تحبون</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<div class="section" id="how">
+  <div class="section-header">
+    <div class="section-badge">كيف نعمل</div>
+    <h2 class="section-title">3 خطوات بسيطة</h2>
+    <div class="section-line"></div>
+    <p class="section-desc">نجعل تجربة طلبك سهلة وممتعة من البداية للنهاية</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">١</div>
+      <h3>تصفح واختر</h3>
+      <p>اختر من تشكيلتنا المتنوعة أو أخبرنا بتصورك الخاص</p>
+    </div>
+    <div class="step">
+      <div class="step-num">٢</div>
+      <h3>تواصل معنا</h3>
+      <p>أرسل طلبك عبر واتساب مع تفاصيل العنوان والوقت المناسب</p>
+    </div>
+    <div class="step">
+      <div class="step-num">٣</div>
+      <h3>استمتع بالجمال</h3>
+      <p>نوصل طلبك طازجاً وبتغليف فاخر في الوقت المحدد</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TESTIMONIALS ══ -->
+<div class="testimonials-bg">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-badge">آراء عملائنا</div>
+      <h2 class="section-title">ماذا يقولون عنا</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"طلبت باقة لعيد ميلاد زوجتي وكانت رائعة جداً، التنسيق أحلى من الصور والتوصيل كان في الوقت المحدد. شكراً الياسي!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">أ</div>
+          <div class="testi-author-info">
+            <strong>أحمد السعيدي</strong>
+            <span>مسقط، عُمان</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"زينوا قاعة زفافنا وكان الشغل احترافي جداً، استخدموا أجود أنواع الورود وكانت المسكة خيالية. أنصح الجميع بهم."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">ف</div>
+          <div class="testi-author-info">
+            <strong>فاطمة الحارثية</strong>
+            <span>مسقط، عُمان</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"طلبت ترتيب يومي للمكتب وكل يوم تصل باقة جديدة تضفي جمالاً على البيئة. خدمة ممتازة وأسعار معقولة جداً."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">م</div>
+          <div class="testi-author-info">
+            <strong>محمد البلوشي</strong>
+            <span>السيب، مسقط</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CTA BANNER ══ -->
+<div class="cta-banner">
+  <h2>مستعد لطلب باقتك؟</h2>
+  <p>تواصل معنا الآن عبر واتساب وسنساعدك في اختيار الباقة المثالية</p>
+  <a href="https://wa.me/96891114035?text=مرحبا، أريد الاستفسار عن باقاتكم" target="_blank" class="cta-wa-btn">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    تواصل عبر واتساب الآن
+  </a>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div class="section" id="contact">
+  <div class="section-header">
+    <div class="section-badge">تواصل معنا</div>
+    <h2 class="section-title">نحن هنا لخدمتكم</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <a href="https://wa.me/96891114035" target="_blank">
+        <div class="contact-icon">💬</div>
+        <h3>واتساب</h3>
+        <p>+968 9111 4035</p>
+        <p class="sub">اضغط للتواصل مباشرة</p>
+      </a>
+    </div>
+    <div class="contact-card">
+      <a href="https://www.instagram.com/alyasiflowers" target="_blank">
+        <div class="contact-icon">📸</div>
+        <h3>إنستغرام</h3>
+        <p>@alyasiflowers</p>
+        <p class="sub">تابعنا لأحدث التصاميم</p>
+      </a>
+    </div>
+    <div class="contact-card">
+      <a href="mailto:alyasiflowers@gmail.com">
+        <div class="contact-icon">✉️</div>
+        <h3>البريد الإلكتروني</h3>
+        <p>alyasiflowers@gmail.com</p>
+        <p class="sub">للاستفسارات والتعاون</p>
+      </a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <h3>الموقع</h3>
+      <p>مسقط مول — البوابة 3B</p>
+      <p class="sub">المعبيلة الجنوبية، السيب، مسقط</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <img src="https://drive.google.com/thumbnail?id=1YYcrJDbT5FzW18GLjZljRWP8m6d3FghL&sz=w200" alt="Alyasi Flowers" onerror="this.style.display='none'" />
+  <p style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:8px;">الياسي للورود والهدايا</p>
+  <p>مسقط مول — البوابة 3B، المعبيلة الجنوبية، مسقط، سلطنة عُمان</p>
+  <div class="footer-links">
+    <a href="#services">خدماتنا</a>
+    <a href="#products">منتجاتنا</a>
+    <a href="https://wa.me/96891114035" target="_blank">واتساب</a>
+    <a href="https://www.instagram.com/alyasiflowers" target="_blank">إنستغرام</a>
+  </div>
+  <p style="font-size:.8rem;margin-top:12px;opacity:.4;">© 2025 الياسي للورود والهدايا — جميع الحقوق محفوظة</p>
+</footer>
+
+</body>
+</html>
