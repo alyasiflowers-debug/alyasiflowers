@@ -1,0 +1,115 @@
+# 🌸 Alyasi Flowers & Gifts — Store Management
+
+> **Al Yasi Flowers & Gifts | مول مسقط — المعبيلة**
+> Financial Management System — May 2026
+
+---
+
+## 📊 May 2026 Dashboard (1–15 May)
+
+| Metric | Value |
+|--------|-------|
+| 💰 Total Sales | **603.300 OMR** |
+| 💸 Total Expenses | **118.789 OMR** |
+| 📈 Net Profit | **484.511 OMR** |
+| 📋 Transactions | 90+ sales |
+
+### Payment Methods Breakdown
+| Method | Amount | % |
+|--------|--------|---|
+| 💳 Visa | 434.500 OMR | 72% |
+| 💵 Cash | 93.300 OMR | 15.5% |
+| 🏦 Bank Transfer | 75.500 OMR | 12.5% |
+
+---
+
+## 📅 Daily Sales Summary
+
+| Date | Day | Sales (OMR) | Cash | Visa | Bank Transfer |
+|------|-----|------------|------|------|--------------|
+| 01/05 | Friday | 28.0 | 4.7 | 23.3 | — |
+| 02/05 | Saturday | 54.0 | 4.7 | 31.8 | 17.5 |
+| 03/05 | Sunday | 17.2 | — | 7.2 | 10.0 |
+| 04/05 | Monday | 27.0 | — | 27.0 | — |
+| 05/05 | Tuesday | 40.1 | 12.5 | 21.6 | 6.0 |
+| 06/05 | Wednesday | **78.1** ⭐ | 25.3 | 52.8 | — |
+| 07/05 | Thursday | 47.4 | 2.4 | 45.0 | — |
+| 08/05 | Friday | 20.9 | 7.9 | 13.0 | — |
+| 09/05 | Saturday | 5.4 | 1.9 | 3.5 | — |
+| 10/05 | Sunday | 25.9 | 10.0 | 15.9 | — |
+| 11/05 | Monday | 42.0 | 3.0 | 39.0 | — |
+| 12/05 | Tuesday | 9.5 | — | 9.5 | — |
+| 13/05 | Wednesday | **121.6** 🏆 | 13.9 | 85.7 | 22.0 |
+| 14/05 | Thursday | 35.8 | 0.3 | 30.5 | 5.0 |
+| 15/05 | Friday | 50.4 | 6.7 | 28.7 | 15.0 |
+
+**🏆 Best day:** 13 May — 121.600 OMR
+
+---
+
+## 🧾 Invoices Summary (21 Invoices)
+
+| | Amount |
+|--|--------|
+| Total Invoices Value | **406.730 OMR** |
+| Paid | **237.800 OMR** |
+| ⚠️ Outstanding Balance | **150.330 OMR** |
+
+### ⚠️ Outstanding Debts
+
+| Invoice | Date | Supplier | Balance (OMR) |
+|---------|------|----------|--------------|
+| 59733 | 04/05 | Zohoor Al-Firdous | 16.800 |
+| 38457 | 06/05 | Flower Gate | 28.100 |
+| 6C219 | 17/04 | Zohoor Al-Firdous | 21.000 |
+| 56761 | 06/05 | Basmah Gifts | 8.041 |
+| FG-13883 | 13/05 | Flower Gate | 17.300 |
+| 62309 | 13/05 | Zohoor Al-Firdous | 20.300 |
+| 56655 | 13/05 | Basmah Gifts | 6.239 |
+| 56767 | 14/05 | Basmah Gifts | 11.550 |
+| 62334 | 16/05 | Zohoor Al-Firdous | 21.000 |
+| **TOTAL** | | | **150.330 OMR** |
+
+---
+
+## 🏪 Suppliers
+
+| Supplier | Type | Contact |
+|----------|------|---------|
+| Zohoor (Al-Firdous Business) | Flowers & Plants Wholesale | Al Khoudh 6, Muscat |
+| Flower Gate (Glory Home LLC) | Natural & Artificial Flowers | Al Azaiba, Muscat |
+| A'Sarooj Flower | Flowers Wholesale | Al-Seeb, Al-Khoud 6 |
+| Basmah Gifts & Accessories | Wrapping & Accessories | Al-Maabela, Muscat |
+| Al Manara Bookshop | Stationery | Al-Maabela, Muscat |
+| LuLu Hypermarket | General Supplies | Mall of Muscat |
+
+---
+
+## 📁 Repository Structure
+
+```
+alyasi-flowers-management/
+├── 📊 data/
+│   ├── sales_may_2026.csv          # All individual sales (90+ records)
+│   ├── daily_summary.csv           # Daily totals 1–15 May
+│   └── invoices.csv                # All 21 supplier invoices
+├── 📁 reports/
+│   └── تقارير_مايو_2026.xlsx       # Full Excel workbook (8 sheets)
+└── 📋 README.md                    # This file
+```
+
+---
+
+## 📈 Top Products (1–15 May)
+
+| Product | Revenue (OMR) | Transactions |
+|---------|--------------|-------------|
+| Flower Bouquet | Highest | Most frequent |
+| Rose | High | Very frequent |
+| Flower | Medium-High | Frequent |
+| Raping/Wrapping | Medium | Regular |
+| Lily | Medium | Regular |
+
+---
+
+*Last updated: 16 May 2026 | System managed by Claude AI*

@@ -1,1 +1,5 @@
-# Pawxi 
+*.tmp
+*.log
+~$*
+.DS_Store
+Thumbs.db
