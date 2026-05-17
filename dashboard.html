@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>داش بورد | الياسي للورود والهدايا</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1a3a2a;--green-mid:#2d5a3d;--green-light:#4a7c5f;
+  --gold:#c4a265;--gold-light:#e8d5b0;
+  --cream:#faf7f2;--cream-dark:#f0ebe2;
+  --dark:#111510;--muted:#6b6b60;--white:#fff;
+  --border:rgba(180,160,120,.18);
+  --success:#1D9E75;--danger:#E24B4A;--warn:#BA7517;--info:#378ADD;
+}
+body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh}
+
+/* LOGIN */
+#loginScreen{position:fixed;inset:0;background:var(--green);display:flex;align-items:center;justify-content:center;z-index:9999}
+.login-box{background:var(--white);border-radius:20px;padding:48px 40px;width:360px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.login-logo{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--green);margin-bottom:6px}
+.login-sub{font-size:.85rem;color:var(--muted);margin-bottom:32px}
+.login-box input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:1rem;font-family:'Tajawal',sans-serif;text-align:center;margin-bottom:12px;transition:border .2s}
+.login-box input:focus{outline:none;border-color:var(--green)}
+.login-btn{width:100%;padding:13px;background:var(--green);color:var(--white);border:none;border-radius:10px;font-size:1rem;font-weight:700;font-family:'Tajawal',sans-serif;cursor:pointer;transition:background .2s}
+.login-btn:hover{background:var(--green-mid)}
+.login-err{color:var(--danger);font-size:.85rem;margin-top:8px;display:none}
+
+/* LAYOUT */
+#app{display:none}
+.sidebar{width:220px;background:var(--green);min-height:100vh;position:fixed;top:0;right:0;padding:24px 0;display:flex;flex-direction:column}
+.sidebar-logo{padding:0 20px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sidebar-logo-name{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--gold-light)}
+.sidebar-logo-sub{font-size:.75rem;color:rgba(255,255,255,.45);margin-top:2px}
+.sidebar-nav{padding:16px 12px;flex:1}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:rgba(255,255,255,.65);font-size:.9rem;cursor:pointer;margin-bottom:4px;transition:all .2s;text-decoration:none}
+.nav-item:hover{background:rgba(255,255,255,.08);color:var(--white)}
+.nav-item.active{background:rgba(196,162,101,.2);color:var(--gold-light)}
+.nav-icon{font-size:1.1rem;width:20px;text-align:center}
+.sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1)}
+.logout-btn{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5);padding:8px 16px;border-radius:8px;font-size:.8rem;cursor:pointer;width:100%;font-family:'Tajawal',sans-serif;transition:all .2s}
+.logout-btn:hover{border-color:rgba(255,255,255,.5);color:var(--white)}
+
+.main{margin-right:220px;padding:32px 28px;min-height:100vh}
+.page{display:none}
+.page.active{display:block}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.page-title{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--green)}
+.page-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.date-badge{background:var(--cream-dark);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.82rem;color:var(--muted)}
+.month-badge{background:var(--green);color:var(--gold-light);padding:6px 14px;border-radius:8px;font-size:.82rem;font-weight:500}
+
+/* KPI CARDS */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px 20px 16px;position:relative;overflow:hidden;transition:transform .2s}
+.kpi-card:hover{transform:translateY(-2px)}
+.kpi-card::before{content:'';position:absolute;top:0;right:0;left:0;height:3px}
+.kpi-card.green::before{background:var(--success)}
+.kpi-card.red::before{background:var(--danger)}
+.kpi-card.gold::before{background:var(--gold)}
+.kpi-card.blue::before{background:var(--info)}
+.kpi-label{font-size:.78rem;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px;letter-spacing:.3px}
+.kpi-val{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--dark);line-height:1}
+.kpi-cur{font-size:.8rem;color:var(--muted);font-family:'Tajawal',sans-serif;margin-right:2px}
+.kpi-change{font-size:.78rem;margin-top:8px;display:flex;align-items:center;gap:4px}
+.kpi-up{color:var(--success)} .kpi-down{color:var(--danger)}
+
+/* CHARTS */
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:20px}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px}
+.chart-title{font-size:.9rem;font-weight:500;color:var(--dark);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.chart-legend{display:flex;gap:14px;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--muted)}
+.leg-dot{width:10px;height:10px;border-radius:2px}
+.filter-tabs{display:flex;gap:6px}
+.tab{padding:4px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Tajawal',sans-serif;transition:all .2s}
+.tab.active{background:var(--green);color:var(--white);border-color:var(--green)}
+
+/* TABLES */
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.table-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px}
+.table-title{font-size:.9rem;font-weight:500;color:var(--dark);margin-bottom:14px}
+table{width:100%;border-collapse:collapse}
+th{font-size:.75rem;color:var(--muted);font-weight:500;padding:8px 10px;text-align:right;border-bottom:1px solid var(--border);letter-spacing:.3px}
+td{font-size:.82rem;padding:9px 10px;border-bottom:1px solid rgba(180,160,120,.08);color:var(--dark)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--cream)}
+.badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:.72rem;font-weight:500}
+.badge-green{background:#E1F5EE;color:#085041}
+.badge-red{background:#FCEBEB;color:#791F1F}
+.badge-amber{background:#FAEEDA;color:#633806}
+.badge-gray{background:#F1EFE8;color:#444441}
+
+/* TOP PRODUCTS */
+.prod-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(180,160,120,.08)}
+.prod-row:last-child{border-bottom:none}
+.prod-rank{width:22px;height:22px;border-radius:50%;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--muted);font-weight:500;flex-shrink:0}
+.prod-rank.gold{background:var(--gold);color:var(--dark)}
+.prod-name{flex:1;font-size:.85rem;color:var(--dark)}
+.prod-bar-wrap{width:80px;height:5px;background:var(--cream-dark);border-radius:3px}
+.prod-bar{height:5px;border-radius:3px;background:var(--success)}
+.prod-val{font-size:.82rem;color:var(--muted);min-width:60px;text-align:left}
+
+/* DEBT SECTION */
+.debt-total-box{background:linear-gradient(135deg,#FCEBEB,#fff);border:1px solid rgba(226,75,74,.2);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.debt-total-label{font-size:.85rem;color:var(--muted)}
+.debt-total-val{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--danger)}
+
+/* INVOICES PAGE */
+.inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.inv-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px;transition:transform .2s}
+.inv-card:hover{transform:translateY(-2px)}
+.inv-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.inv-num{font-size:.75rem;color:var(--muted);font-family:monospace}
+.inv-sup{font-size:.88rem;font-weight:500;color:var(--dark);margin-bottom:4px}
+.inv-date{font-size:.75rem;color:var(--muted)}
+.inv-amount{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--dark);margin:10px 0 4px}
+.inv-paid{font-size:.78rem;color:var(--muted)}
+.inv-bar-wrap{height:5px;background:var(--cream-dark);border-radius:3px;margin-top:10px}
+.inv-bar-fill{height:5px;border-radius:3px}
+
+/* ALERT BAR */
+.alert-bar{background:#FAEEDA;border:1px solid rgba(186,117,23,.3);border-radius:12px;padding:14px 18px;display:flex;gap:12px;align-items:center;margin-bottom:24px}
+.alert-bar p{font-size:.85rem;color:#633806;line-height:1.6}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sidebar{display:none}
+  .main{margin-right:0;padding:20px 16px}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .charts-row{grid-template-columns:1fr}
+  .row2{grid-template-columns:1fr}
+  .inv-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .inv-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">🌸 الياسي</div>
+    <div class="login-sub">لوحة الإدارة — للمالك فقط</div>
+    <input type="password" id="passInput" placeholder="أدخل كلمة السر" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="login-btn" onclick="doLogin()">دخول</button>
+    <div class="login-err" id="loginErr">كلمة السر خاطئة</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-name">الياسي 🌸</div>
+      <div class="sidebar-logo-sub">لوحة الإدارة المالية</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item active" onclick="showPage('overview',this)"><span class="nav-icon">📊</span> نظرة عامة</a>
+      <a class="nav-item" onclick="showPage('sales',this)"><span class="nav-icon">💰</span> المبيعات</a>
+      <a class="nav-item" onclick="showPage('invoices',this)"><span class="nav-icon">🧾</span> الفواتير</a>
+      <a class="nav-item" onclick="showPage('debts',this)"><span class="nav-icon">⚠️</span> الديون</a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- PAGE: OVERVIEW -->
+    <div class="page active" id="page-overview">
+      <div class="topbar">
+        <div>
+          <div class="page-title">نظرة عامة</div>
+          <div class="page-sub">مايو 2026 — 1 إلى 15</div>
+        </div>
+        <div class="topbar-right">
+          <div class="date-badge">17 مايو 2026</div>
+          <div class="month-badge">مايو 2026</div>
+        </div>
+      </div>
+
+      <div class="alert-bar">
+        <span style="font-size:1.3rem">⚠️</span>
+        <p><strong>تنبيه:</strong> يوجد 9 فواتير غير مدفوعة بإجمالي <strong>150.3 ر.ع</strong> — Flower Gate وZohoor وBasmah. يُرجى المتابعة مع الموردين.</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card green">
+          <div class="kpi-label">💰 إجمالي المبيعات</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>603.3</div>
+          <div class="kpi-change"><span class="kpi-up">▲ 80.3%</span> هامش الربح</div>
+        </div>
+        <div class="kpi-card red">
+          <div class="kpi-label">💸 إجمالي المصروفات</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>118.8</div>
+          <div class="kpi-change"><span style="color:var(--muted)">ورد + مستلزمات</span></div>
+        </div>
+        <div class="kpi-card gold">
+          <div class="kpi-label">📈 صافي الربح</div>
+          <div class="kpi-val" style="color:var(--success)"><span class="kpi-cur">ر.ع</span>484.5</div>
+          <div class="kpi-change"><span class="kpi-up">▲ ممتاز</span> 15 يوم فقط</div>
+        </div>
+        <div class="kpi-card blue">
+          <div class="kpi-label">⚠️ ديون مستحقة</div>
+          <div class="kpi-val" style="color:var(--danger)"><span class="kpi-cur">ر.ع</span>150.3</div>
+          <div class="kpi-change"><span class="kpi-down">9 فواتير</span> غير مدفوعة</div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">
+            <span>المبيعات اليومية</span>
+            <div class="filter-tabs">
+              <button class="tab active" onclick="filterSales('all',this)">الكل</button>
+              <button class="tab" onclick="filterSales('w1',this)">الأسبوع ١</button>
+              <button class="tab" onclick="filterSales('w2',this)">الأسبوع ٢</button>
+            </div>
+          </div>
+          <div class="chart-legend" style="margin-bottom:12px">
+            <span class="leg-item"><span class="leg-dot" style="background:#1D9E75"></span>فيزا</span>
+            <span class="leg-item"><span class="leg-dot" style="background:#378ADD"></span>نقدي</span>
+            <span class="leg-item"><span class="leg-dot" style="background:#BA7517"></span>تحويل</span>
+          </div>
+          <div style="position:relative;height:220px">
+            <canvas id="salesChart" role="img" aria-label="مبيعات مايو اليومية">مبيعات 1-15 مايو 2026.</canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">توزيع طرق الدفع</div>
+          <div style="position:relative;height:180px">
+            <canvas id="payChart" role="img" aria-label="توزيع الدفع">فيزا 72%، نقدي 15.5%، تحويل 12.5%.</canvas>
+          </div>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">💳 فيزا</span><span>434.5 ر.ع (72%)</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">💵 نقدي</span><span>93.3 ر.ع (15.5%)</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">🏦 تحويل</span><span>75.5 ر.ع (12.5%)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="table-card">
+          <div class="table-title">🏆 أفضل المنتجات</div>
+          <div id="topProds"></div>
+        </div>
+        <div class="table-card">
+          <div class="table-title">📅 أفضل الأيام</div>
+          <table>
+            <thead><tr><th>التاريخ</th><th>اليوم</th><th>المبيعات</th></tr></thead>
+            <tbody>
+              <tr><td>13/05</td><td>الأربعاء</td><td style="color:var(--success);font-weight:500">121.6 ر.ع 🏆</td></tr>
+              <tr><td>06/05</td><td>الأربعاء</td><td>78.1 ر.ع</td></tr>
+              <tr><td>02/05</td><td>السبت</td><td>54.0 ر.ع</td></tr>
+              <tr><td>15/05</td><td>الجمعة</td><td>50.4 ر.ع</td></tr>
+              <tr><td>07/05</td><td>الخميس</td><td>47.4 ر.ع</td></tr>
+              <tr><td>12/05</td><td>الثلاثاء</td><td style="color:var(--danger)">9.5 ر.ع ↓</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: SALES -->
+    <div class="page" id="page-sales">
+      <div class="topbar">
+        <div><div class="page-title">تفاصيل المبيعات</div><div class="page-sub">مايو 2026 — 15 يوم</div></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card green"><div class="kpi-label">إجمالي المبيعات</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>603.3</div></div>
+        <div class="kpi-card blue"><div class="kpi-label">متوسط اليومي</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>40.2</div></div>
+        <div class="kpi-card gold"><div class="kpi-label">أعلى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>121.6</div><div class="kpi-change">13 مايو</div></div>
+        <div class="kpi-card red"><div class="kpi-label">أدنى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>5.4</div><div class="kpi-change">09 مايو</div></div>
+      </div>
+      <div class="chart-card" style="margin-bottom:20px">
+        <div class="chart-title">المبيعات اليومية التفصيلية</div>
+        <div style="position:relative;height:260px">
+          <canvas id="salesChart2" role="img" aria-label="مبيعات مايو التفصيلية">مبيعات يومية 1-15 مايو.</canvas>
+        </div>
+      </div>
+      <div class="table-card">
+        <div class="table-title">السجل اليومي الكامل</div>
+        <table>
+          <thead><tr><th>التاريخ</th><th>اليوم</th><th>نقدي</th><th>فيزا</th><th>تحويل</th><th>الإجمالي</th><th>شراء ورد</th><th>مصاريف</th></tr></thead>
+          <tbody id="salesTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PAGE: INVOICES -->
+    <div class="page" id="page-invoices">
+      <div class="topbar">
+        <div><div class="page-title">الفواتير</div><div class="page-sub">21 فاتورة — مايو 2026</div></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi-card blue"><div class="kpi-label">إجمالي الفواتير</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>406.7</div></div>
+        <div class="kpi-card green"><div class="kpi-label">المدفوع</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>237.8</div></div>
+        <div class="kpi-card red"><div class="kpi-label">غير مدفوع</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>150.3</div></div>
+        <div class="kpi-card gold"><div class="kpi-label">عدد الفواتير</div><div class="kpi-val">21</div></div>
+      </div>
+      <div class="inv-grid" id="invGrid"></div>
+    </div>
+
+    <!-- PAGE: DEBTS -->
+    <div class="page" id="page-debts">
+      <div class="topbar">
+        <div><div class="page-title">الديون المستحقة</div><div class="page-sub">يجب المتابعة مع الموردين</div></div>
+      </div>
+      <div class="debt-total-box">
+        <div><div class="debt-total-label">إجمالي الديون المستحقة</div><div style="font-size:.8rem;color:var(--muted);margin-top:2px">9 فواتير غير مدفوعة</div></div>
+        <div class="debt-total-val">150.3 ر.ع</div>
+      </div>
+      <div class="table-card">
+        <div class="table-title">تفاصيل الديون</div>
+        <table>
+          <thead><tr><th>رقم الفاتورة</th><th>التاريخ</th><th>المورد</th><th>الإجمالي</th><th>المدفوع</th><th>المتبقي</th><th>الحالة</th></tr></thead>
+          <tbody id="debtTableBody"></tbody>
+        </table>
+      </div>
+      <div class="chart-card" style="margin-top:20px">
+        <div class="chart-title">توزيع الديون حسب المورد</div>
+        <div style="position:relative;height:200px">
+          <canvas id="debtChart" role="img" aria-label="توزيع الديون">ديون الموردين.</canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const PASS = 'alyasi2026';
+
+function doLogin(){
+  const v=document.getElementById('passInput').value;
+  if(v===PASS){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';initCharts();}
+  else{const e=document.getElementById('loginErr');e.style.display='block';setTimeout(()=>e.style.display='none',2000);}
+}
+function logout(){document.getElementById('app').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('passInput').value='';}
+function showPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+const dailyData=[
+  {d:'01/05',day:'الجمعة',cash:4.7,visa:23.3,btr:0,total:28.0,fbuy:0,other:0},
+  {d:'02/05',day:'السبت',cash:4.7,visa:31.8,btr:17.5,total:54.0,fbuy:0,other:0},
+  {d:'03/05',day:'الأحد',cash:0,visa:7.2,btr:10.0,total:17.2,fbuy:0,other:1.1},
+  {d:'04/05',day:'الاثنين',cash:0,visa:27.0,btr:0,total:27.0,fbuy:18.5,other:0},
+  {d:'05/05',day:'الثلاثاء',cash:12.5,visa:21.6,btr:6.0,total:40.1,fbuy:13.1,other:0},
+  {d:'06/05',day:'الأربعاء',cash:25.3,visa:52.8,btr:0,total:78.1,fbuy:9.5,other:8.0},
+  {d:'07/05',day:'الخميس',cash:2.4,visa:45.0,btr:0,total:47.4,fbuy:0,other:0},
+  {d:'08/05',day:'الجمعة',cash:7.9,visa:13.0,btr:0,total:20.9,fbuy:25.4,other:0},
+  {d:'09/05',day:'السبت',cash:1.9,visa:3.5,btr:0,total:5.4,fbuy:0,other:1.4},
+  {d:'10/05',day:'الأحد',cash:10.0,visa:15.9,btr:0,total:25.9,fbuy:9.0,other:0},
+  {d:'11/05',day:'الاثنين',cash:3.0,visa:39.0,btr:0,total:42.0,fbuy:0,other:0},
+  {d:'12/05',day:'الثلاثاء',cash:0,visa:9.5,btr:0,total:9.5,fbuy:0,other:0},
+  {d:'13/05',day:'الأربعاء',cash:13.9,visa:85.7,btr:22.0,total:121.6,fbuy:15.0,other:0},
+  {d:'14/05',day:'الخميس',cash:0.3,visa:30.5,btr:5.0,total:35.8,fbuy:17.789,other:0},
+  {d:'15/05',day:'الجمعة',cash:6.7,visa:28.7,btr:15.0,total:50.4,fbuy:0,other:0},
+];
+
+const invoicesData=[
+  {no:'59733',date:'04/05',sup:'Zohoor Al-Firdous',total:16.8,paid:0,status:'غير مدفوع'},
+  {no:'6C177',date:'15/04',sup:'Zohoor Al-Firdous',total:10.5,paid:10.5,status:'مدفوع'},
+  {no:'19015',date:'19/04',sup:"A'Sarooj Flower",total:10.3,paid:10.3,status:'مدفوع'},
+  {no:'19463',date:'24/04',sup:"A'Sarooj Flower",total:106.26,paid:106.26,status:'مدفوع'},
+  {no:'6C568',date:'24/04',sup:'Zohoor Al-Firdous',total:8.0,paid:8.0,status:'مدفوع'},
+  {no:'6C582',date:'25/04',sup:'Zohoor Al-Firdous',total:13.1,paid:13.1,status:'مدفوع'},
+  {no:'59749',date:'05/05',sup:'Zohoor Al-Firdous',total:9.5,paid:9.5,status:'مدفوع'},
+  {no:'35774',date:'12/04',sup:'Flower Gate',total:9.5,paid:9.5,status:'مدفوع'},
+  {no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,status:'جزئي'},
+  {no:'6C219',date:'17/04',sup:'Zohoor Al-Firdous',total:46.4,paid:25.4,status:'جزئي'},
+  {no:'61956',date:'09/05',sup:'Zohoor Al-Firdous',total:18.6,paid:18.6,status:'مدفوع'},
+  {no:'56761',date:'06/05',sup:'Basmah Gifts',total:8.041,paid:0,status:'غير مدفوع'},
+  {no:'INV13006536',date:'09/05',sup:'Al Manara',total:1.47,paid:1.47,status:'مدفوع'},
+  {no:'223871',date:'03/05',sup:'LuLu Hypermarket',total:1.17,paid:1.17,status:'مدفوع'},
+  {no:'61248',date:'10/05',sup:'Zohoor Al-Firdous',total:14.5,paid:14.5,status:'مدفوع'},
+  {no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,status:'غير مدفوع'},
+  {no:'62309',date:'13/05',sup:'Zohoor Al-Firdous',total:20.3,paid:0,status:'غير مدفوع'},
+  {no:'56655',date:'13/05',sup:'Basmah Gifts',total:6.239,paid:0,status:'غير مدفوع'},
+  {no:'56767',date:'14/05',sup:'Basmah Gifts',total:11.55,paid:0,status:'غير مدفوع'},
+  {no:'62334',date:'16/05',sup:'Zohoor Al-Firdous',total:21.0,paid:0,status:'غير مدفوع'},
+];
+
+const debtsData=[
+  {no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,bal:28.1},
+  {no:'62334',date:'16/05',sup:'Zohoor Al-Firdous',total:21.0,paid:0,bal:21.0},
+  {no:'6C219',date:'17/04',sup:'Zohoor Al-Firdous',total:46.4,paid:25.4,bal:21.0},
+  {no:'62309',date:'13/05',sup:'Zohoor Al-Firdous',total:20.3,paid:0,bal:20.3},
+  {no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,bal:17.3},
+  {no:'59733',date:'04/05',sup:'Zohoor Al-Firdous',total:16.8,paid:0,bal:16.8},
+  {no:'56767',date:'14/05',sup:'Basmah Gifts',total:11.55,paid:0,bal:11.55},
+  {no:'56761',date:'06/05',sup:'Basmah Gifts',total:8.041,paid:0,bal:8.041},
+  {no:'56655',date:'13/05',sup:'Basmah Gifts',total:6.239,paid:0,bal:6.239},
+];
+
+let salesChartObj=null, salesChart2Obj=null;
+const allLabels=dailyData.map(d=>d.d);
+const allVisa=dailyData.map(d=>d.visa);
+const allCash=dailyData.map(d=>d.cash);
+const allBtr=dailyData.map(d=>d.btr);
+
+function makeSalesChart(id,labels,visa,cash,btr){
+  return new Chart(document.getElementById(id),{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'فيزا',data:visa,backgroundColor:'#1D9E75',stack:'s'},
+      {label:'نقدي',data:cash,backgroundColor:'#378ADD',stack:'s'},
+      {label:'تحويل',data:btr,backgroundColor:'#BA7517',stack:'s'}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y.toFixed(1)} ر.ع`}}},
+      scales:{
+        x:{ticks:{font:{size:10},autoSkip:false,maxRotation:0},grid:{display:false}},
+        y:{ticks:{callback:v=>v+' ر.ع',font:{size:10}},grid:{color:'rgba(128,128,128,0.08)'}}
+      }
+    }
+  });
+}
+
+function filterSales(f,btn){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  let l,v,c,b;
+  if(f==='w1'){l=allLabels.slice(0,7);v=allVisa.slice(0,7);c=allCash.slice(0,7);b=allBtr.slice(0,7);}
+  else if(f==='w2'){l=allLabels.slice(7);v=allVisa.slice(7);c=allCash.slice(7);b=allBtr.slice(7);}
+  else{l=allLabels;v=allVisa;c=allCash;b=allBtr;}
+  salesChartObj.data.labels=l;
+  salesChartObj.data.datasets[0].data=v;
+  salesChartObj.data.datasets[1].data=c;
+  salesChartObj.data.datasets[2].data=b;
+  salesChartObj.update();
+}
+
+function initCharts(){
+  salesChartObj=makeSalesChart('salesChart',allLabels,allVisa,allCash,allBtr);
+  salesChart2Obj=makeSalesChart('salesChart2',allLabels,allVisa,allCash,allBtr);
+
+  new Chart(document.getElementById('payChart'),{
+    type:'doughnut',
+    data:{labels:['فيزا','نقدي','تحويل'],datasets:[{data:[434.5,93.3,75.5],backgroundColor:['#1D9E75','#378ADD','#BA7517'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'72%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.label}: ${c.parsed.toFixed(1)} ر.ع`}}}}
+  });
+
+  const debtBySup={'Flower Gate':45.4,'Zohoor Al-Firdous':86.1,'Basmah Gifts':25.8};
+  new Chart(document.getElementById('debtChart'),{
+    type:'bar',
+    data:{labels:Object.keys(debtBySup),datasets:[{label:'الدين',data:Object.values(debtBySup),backgroundColor:['#E24B4A','#BA7517','#888780'],borderRadius:6}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.parsed.y.toFixed(1)} ر.ع`}}},scales:{y:{ticks:{callback:v=>v+' ر.ع',font:{size:10}},grid:{color:'rgba(128,128,128,0.08)'}},x:{grid:{display:false}}}}
+  });
+
+  const prods=[{n:'Flower Bouquet',v:180.9},{n:'Rose',v:105.6},{n:'Flower',v:88.0},{n:'Raping/Wrapping',v:42.0},{n:'Lily',v:38.9},{n:'Kesantemuen',v:15.0}];
+  const pEl=document.getElementById('topProds');
+  prods.forEach((p,i)=>{
+    pEl.innerHTML+=`<div class="prod-row"><div class="prod-rank ${i===0?'gold':''}">${i+1}</div><div class="prod-name">${p.n}</div><div class="prod-bar-wrap"><div class="prod-bar" style="width:${Math.round(p.v/180.9*100)}%"></div></div><div class="prod-val">${p.v.toFixed(1)} ر.ع</div></div>`;
+  });
+
+  const tb=document.getElementById('salesTableBody');
+  dailyData.forEach(d=>{
+    const exp=d.fbuy+d.other;
+    const profit=d.total-exp;
+    tb.innerHTML+=`<tr><td>${d.d}</td><td>${d.day}</td><td>${d.cash.toFixed(1)}</td><td>${d.visa.toFixed(1)}</td><td>${d.btr.toFixed(1)}</td><td style="font-weight:500">${d.total.toFixed(1)}</td><td style="color:var(--danger)">${d.fbuy>0?d.fbuy.toFixed(1):'—'}</td><td style="color:var(--muted)">${d.other>0?d.other.toFixed(1):'—'}</td></tr>`;
+  });
+
+  const ig=document.getElementById('invGrid');
+  invoicesData.forEach(inv=>{
+    const pct=inv.total>0?Math.round(inv.paid/inv.total*100):0;
+    const badgeCls=inv.status==='مدفوع'?'badge-green':inv.status==='جزئي'?'badge-amber':'badge-red';
+    const barColor=inv.status==='مدفوع'?'#1D9E75':inv.status==='جزئي'?'#BA7517':'#E24B4A';
+    ig.innerHTML+=`<div class="inv-card"><div class="inv-header"><span class="inv-num">#${inv.no}</span><span class="badge ${badgeCls}">${inv.status}</span></div><div class="inv-sup">${inv.sup}</div><div class="inv-date">${inv.date} مايو 2026</div><div class="inv-amount">${inv.total.toFixed(2)} <small style="font-size:.75rem;color:var(--muted);font-family:'Tajawal',sans-serif">ر.ع</small></div><div class="inv-paid">مدفوع: ${inv.paid.toFixed(2)} ر.ع | متبقي: ${(inv.total-inv.paid).toFixed(2)} ر.ع</div><div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:${pct}%;background:${barColor}"></div></div></div>`;
+  });
+
+  const dtb=document.getElementById('debtTableBody');
+  debtsData.forEach(d=>{
+    const urgency=d.bal>20?'badge-red':d.bal>10?'badge-amber':'badge-gray';
+    dtb.innerHTML+=`<tr><td style="font-family:monospace;font-size:.78rem">#${d.no}</td><td>${d.date}</td><td>${d.sup}</td><td>${d.total.toFixed(2)}</td><td style="color:var(--success)">${d.paid.toFixed(2)}</td><td style="font-weight:500;color:var(--danger)">${d.bal.toFixed(2)}</td><td><span class="badge ${urgency}">${d.bal>20?'عاجل':d.bal>10?'متوسط':'منخفض'}</span></td></tr>`;
+  });
+}
+</script>
+</body>
+</html>
