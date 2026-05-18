@@ -194,8 +194,34 @@ tr:hover td{background:var(--cream)}
       <div class="alert-bar">
         <span style="font-size:1.3rem">⚠️</span>
         <p><strong>تنبيه:</strong> يوجد 2 فواتير غير مدفوعة بإجمالي 45.4 ر.ع</strong> — Flower Gate وZohoor وBasmah. يُرجى المتابعة مع الموردين.</p>
+      
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
+        <div class="kpi-card" style="border-top:3px solid #BA7517">
+          <div class="kpi-label"><i class="ti ti-home" aria-hidden="true"></i> الإيجار الشهري</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>315.0</div>
+          <div class="kpi-change" style="color:var(--color-text-secondary)">تكلفة ثابتة / شهر</div>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid #BA7517">
+          <div class="kpi-label"><i class="ti ti-user" aria-hidden="true"></i> راتب العامل</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>271.0</div>
+          <div class="kpi-change" style="color:var(--color-text-secondary)">تكلفة ثابتة / شهر</div>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid #378ADD">
+          <div class="kpi-label"><i class="ti ti-credit-card" aria-hidden="true"></i> عمولة البنك (فيزا)</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>5.9</div>
+          <div class="kpi-change" style="color:var(--color-text-secondary)">1.26% من 470.8 ر.ع فيزا</div>
+        </div>
       </div>
-
+      <div style="background:#FCEBEA;border:1px solid rgba(226,75,74,.2);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+        <div>
+          <div style="font-size:.85rem;color:var(--color-text-secondary)">صافي الربح الحقيقي (بعد كل التكاليف)</div>
+          <div style="font-size:.8rem;color:var(--color-text-tertiary);margin-top:2px">مبيعات − ورد − إيجار − راتب − عمولة بنك</div>
+        </div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:#E24B4A">-153.0 ر.ع</div>
+      </div>
+      <div style="background:#E1F5EE;border:1px solid rgba(29,158,117,.2);border-radius:12px;padding:12px 20px;margin-bottom:24px;font-size:.85rem;color:#085041">
+        <strong>ملاحظة:</strong> الأرقام لمدة 18 يوم فقط — التكاليف الثابتة (إيجار + راتب = 586 ر.ع) محسوبة كاملة للشهر. عند اكتمال الشهر ستتحسن الأرباح.
+      </div>
       <div class="kpi-grid">
         <div class="kpi-card green">
           <div class="kpi-label">💰 إجمالي المبيعات</div>
@@ -214,7 +240,7 @@ tr:hover td{background:var(--cream)}
         </div>
         <div class="kpi-card blue">
           <div class="kpi-label">⚠️ ديون مستحقة</div>
-          <div class="kpi-val" style="color:var(--danger)"><span class="kpi-cur">ر.ع</span>150.3</div>
+          <div class="kpi-val" style="color:var(--danger)"><span class="kpi-cur">ر.ع</span>45.4</div>
           <div class="kpi-change"><span class="kpi-down">2 فواتير</span> غير مدفوعة</div>
         </div>
       </div>
