@@ -193,13 +193,13 @@ tr:hover td{background:var(--cream)}
 
       <div class="alert-bar">
         <span style="font-size:1.3rem">⚠️</span>
-        <p><strong>تنبيه:</strong> يوجد 2 فواتير غير مدفوعة بإجمالي <strong>45.4 ر.ع</strong> — Flower Gate وZohoor وBasmah. يُرجى المتابعة مع الموردين.</p>
+        <p><strong>تنبيه:</strong> يوجد 2 فواتير غير مدفوعة بإجمالي 45.4 ر.ع</strong> — Flower Gate وZohoor وBasmah. يُرجى المتابعة مع الموردين.</p>
       </div>
 
       <div class="kpi-grid">
         <div class="kpi-card green">
           <div class="kpi-label">💰 إجمالي المبيعات</div>
-          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>655.4</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>45.4</div>
           <div class="kpi-change"><span class="kpi-up">▲ 80.3%</span> هامش الربح</div>
         </div>
         <div class="kpi-card red">
@@ -215,7 +215,7 @@ tr:hover td{background:var(--cream)}
         <div class="kpi-card blue">
           <div class="kpi-label">⚠️ ديون مستحقة</div>
           <div class="kpi-val" style="color:var(--danger)"><span class="kpi-cur">ر.ع</span>150.3</div>
-          <div class="kpi-change"><span class="kpi-down">9 فواتير</span> غير مدفوعة</div>
+          <div class="kpi-change"><span class="kpi-down">2 فواتير</span> غير مدفوعة</div>
         </div>
       </div>
 
@@ -281,7 +281,7 @@ tr:hover td{background:var(--cream)}
       <div class="kpi-grid">
         <div class="kpi-card green"><div class="kpi-label">إجمالي المبيعات</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>655.4</div></div>
         <div class="kpi-card blue"><div class="kpi-label">متوسط اليومي</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>40.2</div></div>
-        <div class="kpi-card gold"><div class="kpi-label">أعلى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>121.6</div><div class="kpi-change">13 مايو</div></div>
+        <div class="kpi-card gold"><div class="kpi-label">أعلى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>45.4</div><div class="kpi-change">13 مايو</div></div>
         <div class="kpi-card red"><div class="kpi-label">أدنى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>5.4</div><div class="kpi-change">09 مايو</div></div>
       </div>
       <div class="chart-card" style="margin-bottom:20px">
@@ -375,7 +375,7 @@ const dailyData=[
 ];
 
 const invoicesData=[
-  {no:'59733',date:'04/05',sup:'Zohoor Al-Firdous',total:16.8,paid:0,status:'غير مدفوع'},
+  {no:'59733',date:'04/05',sup:'Zohoor Al-Firdous',total:16.8,paid:16.8,status:'مدفوع'},
   {no:'6C177',date:'15/04',sup:'Zohoor Al-Firdous',total:10.5,paid:10.5,status:'مدفوع'},
   {no:'19015',date:'19/04',sup:"A'Sarooj Flower",total:10.3,paid:10.3,status:'مدفوع'},
   {no:'19463',date:'24/04',sup:"A'Sarooj Flower",total:106.26,paid:106.26,status:'مدفوع'},
@@ -384,30 +384,20 @@ const invoicesData=[
   {no:'59749',date:'05/05',sup:'Zohoor Al-Firdous',total:9.5,paid:9.5,status:'مدفوع'},
   {no:'35774',date:'12/04',sup:'Flower Gate',total:9.5,paid:9.5,status:'مدفوع'},
   {no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,status:'جزئي'},
-  {no:'6C219',date:'17/04',sup:'Zohoor Al-Firdous',total:46.4,paid:25.4,status:'جزئي'},
+  {no:'6C219',date:'17/04',sup:'Zohoor Al-Firdous',total:46.4,paid:46.4,status:'مدفوع'},
   {no:'61956',date:'09/05',sup:'Zohoor Al-Firdous',total:18.6,paid:18.6,status:'مدفوع'},
-  {no:'56761',date:'06/05',sup:'Basmah Gifts',total:8.041,paid:0,status:'غير مدفوع'},
+  {no:'56761',date:'06/05',sup:'Basmah Gifts',total:8.041,paid:8.041,status:'مدفوع'},
   {no:'INV13006536',date:'09/05',sup:'Al Manara',total:1.47,paid:1.47,status:'مدفوع'},
   {no:'223871',date:'03/05',sup:'LuLu Hypermarket',total:1.17,paid:1.17,status:'مدفوع'},
   {no:'61248',date:'10/05',sup:'Zohoor Al-Firdous',total:14.5,paid:14.5,status:'مدفوع'},
   {no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,status:'غير مدفوع'},
-  {no:'62309',date:'13/05',sup:'Zohoor Al-Firdous',total:20.3,paid:0,status:'غير مدفوع'},
-  {no:'56655',date:'13/05',sup:'Basmah Gifts',total:6.239,paid:0,status:'غير مدفوع'},
-  {no:'56767',date:'14/05',sup:'Basmah Gifts',total:11.55,paid:0,status:'غير مدفوع'},
-  {no:'62334',date:'16/05',sup:'Zohoor Al-Firdous',total:21.0,paid:0,status:'غير مدفوع'},
+  {no:'62309',date:'13/05',sup:'Zohoor Al-Firdous',total:20.3,paid:20.3,status:'مدفوع'},
+  {no:'56655',date:'13/05',sup:'Basmah Gifts',total:6.239,paid:6.239,status:'مدفوع'},
+  {no:'56767',date:'14/05',sup:'Basmah Gifts',total:11.55,paid:11.55,status:'مدفوع'},
+  {no:'62334',date:'16/05',sup:'Zohoor Al-Firdous',total:21.0,paid:21.0,status:'مدفوع'},
 ];
 
-const debtsData=[
-  {no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,bal:28.1},
-  {no:'62334',date:'16/05',sup:'Zohoor Al-Firdous',total:21.0,paid:0,bal:21.0},
-  {no:'6C219',date:'17/04',sup:'Zohoor Al-Firdous',total:46.4,paid:25.4,bal:21.0},
-  {no:'62309',date:'13/05',sup:'Zohoor Al-Firdous',total:20.3,paid:0,bal:20.3},
-  {no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,bal:17.3},
-  {no:'59733',date:'04/05',sup:'Zohoor Al-Firdous',total:16.8,paid:0,bal:16.8},
-  {no:'56767',date:'14/05',sup:'Basmah Gifts',total:11.55,paid:0,bal:11.55},
-  {no:'56761',date:'06/05',sup:'Basmah Gifts',total:8.041,paid:0,bal:8.041},
-  {no:'56655',date:'13/05',sup:'Basmah Gifts',total:6.239,paid:0,bal:6.239},
-];
+const debtsData=[{no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,bal:28.1},{no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,bal:17.3}];
 
 let salesChartObj=null, salesChart2Obj=null;
 const allLabels=dailyData.map(d=>d.d);
@@ -457,7 +447,7 @@ function initCharts(){
     options:{responsive:true,maintainAspectRatio:false,cutout:'72%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.label}: ${c.parsed.toFixed(1)} ر.ع`}}}}
   });
 
-  const debtBySup={'Flower Gate':45.4,'Zohoor Al-Firdous':86.1,'Basmah Gifts':0};
+  const debtBySup={'Flower Gate':45.4,'Zohoor':0,'Basmah':0};
   new Chart(document.getElementById('debtChart'),{
     type:'bar',
     data:{labels:Object.keys(debtBySup),datasets:[{label:'الدين',data:Object.values(debtBySup),backgroundColor:['#E24B4A','#BA7517','#888780'],borderRadius:6}]},
