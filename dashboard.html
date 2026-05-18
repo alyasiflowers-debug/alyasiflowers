@@ -193,7 +193,7 @@ tr:hover td{background:var(--cream)}
 
       <div class="alert-bar">
         <span style="font-size:1.3rem">⚠️</span>
-        <p><strong>تنبيه:</strong> يوجد 9 فواتير غير مدفوعة بإجمالي <strong>150.3 ر.ع</strong> — Flower Gate وZohoor وBasmah. يُرجى المتابعة مع الموردين.</p>
+        <p><strong>تنبيه:</strong> يوجد 6 فواتير غير مدفوعة بإجمالي <strong>124.5 ر.ع</strong> — Flower Gate وZohoor وBasmah. يُرجى المتابعة مع الموردين.</p>
       </div>
 
       <div class="kpi-grid">
@@ -319,8 +319,8 @@ tr:hover td{background:var(--cream)}
         <div><div class="page-title">الديون المستحقة</div><div class="page-sub">يجب المتابعة مع الموردين</div></div>
       </div>
       <div class="debt-total-box">
-        <div><div class="debt-total-label">إجمالي الديون المستحقة</div><div style="font-size:.8rem;color:var(--muted);margin-top:2px">9 فواتير غير مدفوعة</div></div>
-        <div class="debt-total-val">150.3 ر.ع</div>
+        <div><div class="debt-total-label">إجمالي الديون المستحقة</div><div style="font-size:.8rem;color:var(--muted);margin-top:2px">6 فواتير غير مدفوعة</div></div>
+        <div class="debt-total-val">124.5 ر.ع</div>
       </div>
       <div class="table-card">
         <div class="table-title">تفاصيل الديون</div>
@@ -457,7 +457,7 @@ function initCharts(){
     options:{responsive:true,maintainAspectRatio:false,cutout:'72%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.label}: ${c.parsed.toFixed(1)} ر.ع`}}}}
   });
 
-  const debtBySup={'Flower Gate':45.4,'Zohoor Al-Firdous':86.1,'Basmah Gifts':25.8};
+  const debtBySup={'Flower Gate':45.4,'Zohoor Al-Firdous':86.1,'Basmah Gifts':0};
   new Chart(document.getElementById('debtChart'),{
     type:'bar',
     data:{labels:Object.keys(debtBySup),datasets:[{label:'الدين',data:Object.values(debtBySup),backgroundColor:['#E24B4A','#BA7517','#888780'],borderRadius:6}]},
