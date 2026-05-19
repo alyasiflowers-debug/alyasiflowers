@@ -3,33 +3,21 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>داش بورد | الياسي للورود والهدايا</title>
+<title>داش بورد | الياسي للورود</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --green:#1a3a2a;--green-mid:#2d5a3d;--green-light:#4a7c5f;
-  --gold:#c4a265;--gold-light:#e8d5b0;
-  --cream:#faf7f2;--cream-dark:#f0ebe2;
-  --dark:#111510;--muted:#6b6b60;--white:#fff;
-  --border:rgba(180,160,120,.18);
-  --success:#1D9E75;--danger:#E24B4A;--warn:#BA7517;--info:#378ADD;
-}
+:root{--green:#1a3a2a;--green-mid:#2d5a3d;--gold:#c4a265;--gold-light:#e8d5b0;--cream:#faf7f2;--cream-dark:#f0ebe2;--dark:#111510;--muted:#6b6b60;--white:#fff;--border:rgba(180,160,120,.18);--success:#1D9E75;--danger:#E24B4A;--warn:#BA7517;--info:#378ADD}
 body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh}
-
-/* LOGIN */
 #loginScreen{position:fixed;inset:0;background:var(--green);display:flex;align-items:center;justify-content:center;z-index:9999}
-.login-box{background:var(--white);border-radius:20px;padding:48px 40px;width:360px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.login-box{background:var(--white);border-radius:20px;padding:48px 40px;width:360px;text-align:center}
 .login-logo{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--green);margin-bottom:6px}
 .login-sub{font-size:.85rem;color:var(--muted);margin-bottom:32px}
-.login-box input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:1rem;font-family:'Tajawal',sans-serif;text-align:center;margin-bottom:12px;transition:border .2s}
+.login-box input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:1rem;font-family:'Tajawal',sans-serif;text-align:center;margin-bottom:12px}
 .login-box input:focus{outline:none;border-color:var(--green)}
-.login-btn{width:100%;padding:13px;background:var(--green);color:var(--white);border:none;border-radius:10px;font-size:1rem;font-weight:700;font-family:'Tajawal',sans-serif;cursor:pointer;transition:background .2s}
-.login-btn:hover{background:var(--green-mid)}
+.login-btn{width:100%;padding:13px;background:var(--green);color:var(--white);border:none;border-radius:10px;font-size:1rem;font-weight:700;font-family:'Tajawal',sans-serif;cursor:pointer}
 .login-err{color:var(--danger);font-size:.85rem;margin-top:8px;display:none}
-
-/* LAYOUT */
 #app{display:none}
 .sidebar{width:220px;background:var(--green);min-height:100vh;position:fixed;top:0;right:0;padding:24px 0;display:flex;flex-direction:column}
 .sidebar-logo{padding:0 20px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -39,240 +27,184 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--dark);
 .nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:rgba(255,255,255,.65);font-size:.9rem;cursor:pointer;margin-bottom:4px;transition:all .2s;text-decoration:none}
 .nav-item:hover{background:rgba(255,255,255,.08);color:var(--white)}
 .nav-item.active{background:rgba(196,162,101,.2);color:var(--gold-light)}
-.nav-icon{font-size:1.1rem;width:20px;text-align:center}
 .sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1)}
-.logout-btn{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5);padding:8px 16px;border-radius:8px;font-size:.8rem;cursor:pointer;width:100%;font-family:'Tajawal',sans-serif;transition:all .2s}
-.logout-btn:hover{border-color:rgba(255,255,255,.5);color:var(--white)}
-
-.main{margin-right:220px;padding:32px 28px;min-height:100vh}
-.page{display:none}
-.page.active{display:block}
-
-/* TOPBAR */
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
-.page-title{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--green)}
-.page-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
-.topbar-right{display:flex;align-items:center;gap:10px}
-.date-badge{background:var(--cream-dark);border:1px solid var(--border);padding:6px 14px;border-radius:8px;font-size:.82rem;color:var(--muted)}
+.logout-btn{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5);padding:8px 16px;border-radius:8px;font-size:.8rem;cursor:pointer;width:100%;font-family:'Tajawal',sans-serif}
+.main{margin-right:220px;padding:28px 24px;min-height:100vh}
+.page{display:none}.page.active{display:block}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:8px}
+.page-title{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green)}
+.page-sub{font-size:.82rem;color:var(--muted);margin-top:2px}
 .month-badge{background:var(--green);color:var(--gold-light);padding:6px 14px;border-radius:8px;font-size:.82rem;font-weight:500}
-
-/* KPI CARDS */
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
-.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px 20px 16px;position:relative;overflow:hidden;transition:transform .2s}
-.kpi-card:hover{transform:translateY(-2px)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:18px 18px 14px;position:relative;overflow:hidden}
 .kpi-card::before{content:'';position:absolute;top:0;right:0;left:0;height:3px}
-.kpi-card.green::before{background:var(--success)}
-.kpi-card.red::before{background:var(--danger)}
-.kpi-card.gold::before{background:var(--gold)}
-.kpi-card.blue::before{background:var(--info)}
-.kpi-label{font-size:.78rem;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px;letter-spacing:.3px}
-.kpi-val{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--dark);line-height:1}
-.kpi-cur{font-size:.8rem;color:var(--muted);font-family:'Tajawal',sans-serif;margin-right:2px}
-.kpi-change{font-size:.78rem;margin-top:8px;display:flex;align-items:center;gap:4px}
-.kpi-up{color:var(--success)} .kpi-down{color:var(--danger)}
-
-/* CHARTS */
-.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:20px}
-.chart-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px}
-.chart-title{font-size:.9rem;font-weight:500;color:var(--dark);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
-.chart-legend{display:flex;gap:14px;flex-wrap:wrap}
-.leg-item{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--muted)}
-.leg-dot{width:10px;height:10px;border-radius:2px}
-.filter-tabs{display:flex;gap:6px}
-.tab{padding:4px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Tajawal',sans-serif;transition:all .2s}
+.kpi-card.green::before{background:var(--success)}.kpi-card.red::before{background:var(--danger)}.kpi-card.gold::before{background:var(--gold)}.kpi-card.blue::before{background:var(--info)}.kpi-card.amber::before{background:var(--warn)}
+.kpi-label{font-size:.76rem;color:var(--muted);margin-bottom:8px;letter-spacing:.3px}
+.kpi-val{font-family:'DM Serif Display',serif;font-size:1.9rem;color:var(--dark);line-height:1}
+.kpi-cur{font-size:.78rem;color:var(--muted);font-family:'Tajawal',sans-serif;margin-right:2px}
+.kpi-change{font-size:.75rem;margin-top:6px;color:var(--muted)}
+.kpi-up{color:var(--success)}.kpi-dn{color:var(--danger)}
+.fixed-costs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.net-box{border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.net-box.neg{background:#FCEBEA;border:1px solid rgba(226,75,74,.2)}
+.net-box.pos{background:#E1F5EE;border:1px solid rgba(29,158,117,.2)}
+.net-label{font-size:.85rem;color:var(--muted)}
+.net-sub{font-size:.78rem;color:var(--muted);margin-top:3px}
+.net-val{font-family:'DM Serif Display',serif;font-size:1.9rem}
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:18px}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:18px}
+.chart-title{font-size:.88rem;font-weight:500;color:var(--dark);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.tab{padding:4px 10px;border-radius:6px;font-size:.75rem;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Tajawal',sans-serif}
 .tab.active{background:var(--green);color:var(--white);border-color:var(--green)}
-
-/* TABLES */
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
-.table-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px}
-.table-title{font-size:.9rem;font-weight:500;color:var(--dark);margin-bottom:14px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.table-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:18px}
+.table-title{font-size:.88rem;font-weight:500;color:var(--dark);margin-bottom:12px}
 table{width:100%;border-collapse:collapse}
-th{font-size:.75rem;color:var(--muted);font-weight:500;padding:8px 10px;text-align:right;border-bottom:1px solid var(--border);letter-spacing:.3px}
-td{font-size:.82rem;padding:9px 10px;border-bottom:1px solid rgba(180,160,120,.08);color:var(--dark)}
+th{font-size:.73rem;color:var(--muted);font-weight:500;padding:7px 8px;text-align:right;border-bottom:1px solid var(--border)}
+td{font-size:.8rem;padding:8px 8px;border-bottom:1px solid rgba(180,160,120,.08);color:var(--dark)}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--cream)}
-.badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:.72rem;font-weight:500}
-.badge-green{background:#E1F5EE;color:#085041}
-.badge-red{background:#FCEBEB;color:#791F1F}
-.badge-amber{background:#FAEEDA;color:#633806}
-.badge-gray{background:#F1EFE8;color:#444441}
-
-/* TOP PRODUCTS */
-.prod-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(180,160,120,.08)}
+.badge{display:inline-block;padding:2px 8px;border-radius:5px;font-size:.7rem;font-weight:500}
+.b-green{background:#E1F5EE;color:#085041}.b-red{background:#FCEBEB;color:#791F1F}.b-amber{background:#FAEEDA;color:#633806}.b-gray{background:#F1EFE8;color:#444441}
+.prod-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid rgba(180,160,120,.08)}
 .prod-row:last-child{border-bottom:none}
-.prod-rank{width:22px;height:22px;border-radius:50%;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--muted);font-weight:500;flex-shrink:0}
+.prod-rank{width:20px;height:20px;border-radius:50%;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);flex-shrink:0}
 .prod-rank.gold{background:var(--gold);color:var(--dark)}
-.prod-name{flex:1;font-size:.85rem;color:var(--dark)}
-.prod-bar-wrap{width:80px;height:5px;background:var(--cream-dark);border-radius:3px}
-.prod-bar{height:5px;border-radius:3px;background:var(--success)}
-.prod-val{font-size:.82rem;color:var(--muted);min-width:60px;text-align:left}
-
-/* DEBT SECTION */
-.debt-total-box{background:linear-gradient(135deg,#FCEBEB,#fff);border:1px solid rgba(226,75,74,.2);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.debt-total-label{font-size:.85rem;color:var(--muted)}
-.debt-total-val{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--danger)}
-
-/* INVOICES PAGE */
-.inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.inv-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px;transition:transform .2s}
-.inv-card:hover{transform:translateY(-2px)}
-.inv-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.inv-num{font-size:.75rem;color:var(--muted);font-family:monospace}
-.inv-sup{font-size:.88rem;font-weight:500;color:var(--dark);margin-bottom:4px}
-.inv-date{font-size:.75rem;color:var(--muted)}
-.inv-amount{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--dark);margin:10px 0 4px}
-.inv-paid{font-size:.78rem;color:var(--muted)}
-.inv-bar-wrap{height:5px;background:var(--cream-dark);border-radius:3px;margin-top:10px}
-.inv-bar-fill{height:5px;border-radius:3px}
-
-/* ALERT BAR */
-.alert-bar{background:#FAEEDA;border:1px solid rgba(186,117,23,.3);border-radius:12px;padding:14px 18px;display:flex;gap:12px;align-items:center;margin-bottom:24px}
-.alert-bar p{font-size:.85rem;color:#633806;line-height:1.6}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .sidebar{display:none}
-  .main{margin-right:0;padding:20px 16px}
-  .kpi-grid{grid-template-columns:repeat(2,1fr)}
-  .charts-row{grid-template-columns:1fr}
-  .row2{grid-template-columns:1fr}
-  .inv-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:480px){
-  .kpi-grid{grid-template-columns:1fr 1fr}
-  .inv-grid{grid-template-columns:1fr}
-}
+.prod-name{flex:1;font-size:.82rem}
+.prod-bar-wrap{width:70px;height:4px;background:var(--cream-dark);border-radius:2px}
+.prod-bar{height:4px;border-radius:2px;background:var(--success)}
+.prod-val{font-size:.8rem;color:var(--muted);min-width:55px;text-align:left}
+.inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.inv-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:16px}
+.inv-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.inv-num{font-size:.72rem;color:var(--muted);font-family:monospace}
+.inv-sup{font-size:.85rem;font-weight:500;margin-bottom:3px}
+.inv-date{font-size:.72rem;color:var(--muted)}
+.inv-amount{font-family:'DM Serif Display',serif;font-size:1.3rem;margin:8px 0 3px}
+.inv-paid{font-size:.75rem;color:var(--muted)}
+.inv-bar-wrap{height:4px;background:var(--cream-dark);border-radius:2px;margin-top:8px}
+.inv-bar-fill{height:4px;border-radius:2px}
+.debt-total{background:#FCEBEA;border:1px solid rgba(226,75,74,.2);border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.alert-bar{background:#FAEEDA;border:1px solid rgba(186,117,23,.3);border-radius:12px;padding:12px 16px;display:flex;gap:10px;align-items:center;margin-bottom:20px;font-size:.83rem;color:#633806}
+.info-bar{background:#E1F5EE;border:1px solid rgba(29,158,117,.2);border-radius:12px;padding:10px 16px;margin-bottom:16px;font-size:.82rem;color:#085041}
+@media(max-width:900px){.sidebar{display:none}.main{margin-right:0;padding:16px}.kpi-grid{grid-template-columns:repeat(2,1fr)}.charts-row{grid-template-columns:1fr}.row2{grid-template-columns:1fr}.fixed-costs-grid{grid-template-columns:1fr}.inv-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-
-<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">🌸 الياسي</div>
-    <div class="login-sub">لوحة الإدارة — للمالك فقط</div>
-    <input type="password" id="passInput" placeholder="أدخل كلمة السر" onkeydown="if(event.key==='Enter')doLogin()"/>
-    <button class="login-btn" onclick="doLogin()">دخول</button>
-    <div class="login-err" id="loginErr">كلمة السر خاطئة</div>
+    <div class="login-sub">لوحة الإدارة المالية — للمالك فقط</div>
+    <input type="password" id="pi" placeholder="كلمة السر" onkeydown="if(event.key==='Enter')login()"/>
+    <button class="login-btn" onclick="login()">دخول</button>
+    <div class="login-err" id="le">كلمة السر خاطئة</div>
   </div>
 </div>
-
-<!-- APP -->
 <div id="app">
-  <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="sidebar-logo">
       <div class="sidebar-logo-name">الياسي 🌸</div>
       <div class="sidebar-logo-sub">لوحة الإدارة المالية</div>
     </div>
     <nav class="sidebar-nav">
-      <a class="nav-item active" onclick="showPage('overview',this)"><span class="nav-icon">📊</span> نظرة عامة</a>
-      <a class="nav-item" onclick="showPage('sales',this)"><span class="nav-icon">💰</span> المبيعات</a>
-      <a class="nav-item" onclick="showPage('invoices',this)"><span class="nav-icon">🧾</span> الفواتير</a>
-      <a class="nav-item" onclick="showPage('debts',this)"><span class="nav-icon">⚠️</span> الديون</a>
+      <a class="nav-item active" onclick="pg('overview',this)">📊 نظرة عامة</a>
+      <a class="nav-item" onclick="pg('sales',this)">💰 المبيعات</a>
+      <a class="nav-item" onclick="pg('invoices',this)">🧾 الفواتير</a>
+      <a class="nav-item" onclick="pg('debts',this)">⚠️ الديون</a>
     </nav>
     <div class="sidebar-footer">
       <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
     </div>
   </div>
-
   <div class="main">
 
-    <!-- PAGE: OVERVIEW -->
+    <!-- OVERVIEW -->
     <div class="page active" id="page-overview">
       <div class="topbar">
-        <div>
-          <div class="page-title">نظرة عامة</div>
-          <div class="page-sub">مايو 2026 — 1 إلى 15</div>
-        </div>
-        <div class="topbar-right">
-          <div class="date-badge">18 مايو 2026</div>
-          <div class="month-badge">مايو 2026</div>
-        </div>
+        <div><div class="page-title">نظرة عامة</div><div class="page-sub">مايو 2026 — 1 إلى 18 مايو</div></div>
+        <div class="month-badge">مايو 2026</div>
       </div>
+      <div class="alert-bar">⚠️ <span><strong>ديون متبقية:</strong> فاتورتان لـ Flower Gate بإجمالي <strong>45.4 ر.ع</strong> — يُرجى السداد قريباً.</span></div>
 
-      <div class="alert-bar">
-        <span style="font-size:1.3rem">⚠️</span>
-        <p><strong>تنبيه:</strong> يوجد 2 فواتير غير مدفوعة بإجمالي 45.4 ر.ع</strong> — Flower Gate وZohoor وBasmah. يُرجى المتابعة مع الموردين.</p>
-      
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
-        <div class="kpi-card" style="border-top:3px solid #BA7517">
-          <div class="kpi-label"><i class="ti ti-home" aria-hidden="true"></i> الإيجار الشهري</div>
-          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>315.0</div>
-          <div class="kpi-change" style="color:var(--color-text-secondary)">تكلفة ثابتة / شهر</div>
-        </div>
-        <div class="kpi-card" style="border-top:3px solid #BA7517">
-          <div class="kpi-label"><i class="ti ti-user" aria-hidden="true"></i> راتب العامل</div>
-          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>271.0</div>
-          <div class="kpi-change" style="color:var(--color-text-secondary)">تكلفة ثابتة / شهر</div>
-        </div>
-        <div class="kpi-card" style="border-top:3px solid #378ADD">
-          <div class="kpi-label"><i class="ti ti-credit-card" aria-hidden="true"></i> عمولة البنك (فيزا)</div>
-          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>5.9</div>
-          <div class="kpi-change" style="color:var(--color-text-secondary)">1.26% من 470.8 ر.ع فيزا</div>
-        </div>
-      </div>
-      <div style="background:#FCEBEA;border:1px solid rgba(226,75,74,.2);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-        <div>
-          <div style="font-size:.85rem;color:var(--color-text-secondary)">صافي الربح الحقيقي (بعد كل التكاليف)</div>
-          <div style="font-size:.8rem;color:var(--color-text-tertiary);margin-top:2px">مبيعات − ورد − إيجار − راتب − عمولة بنك</div>
-        </div>
-        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:#E24B4A">-153.0 ر.ع</div>
-      </div>
-      <div style="background:#E1F5EE;border:1px solid rgba(29,158,117,.2);border-radius:12px;padding:12px 20px;margin-bottom:24px;font-size:.85rem;color:#085041">
-        <strong>ملاحظة:</strong> الأرقام لمدة 18 يوم فقط — التكاليف الثابتة (إيجار + راتب = 586 ر.ع) محسوبة كاملة للشهر. عند اكتمال الشهر ستتحسن الأرباح.
-      </div>
+      <!-- KPI المبيعات الرئيسية -->
       <div class="kpi-grid">
         <div class="kpi-card green">
           <div class="kpi-label">💰 إجمالي المبيعات</div>
-          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>45.4</div>
-          <div class="kpi-change"><span class="kpi-up">▲ 80.3%</span> هامش الربح</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>655.4</div>
+          <div class="kpi-change">18 يوم — مايو 2026</div>
         </div>
         <div class="kpi-card red">
-          <div class="kpi-label">💸 إجمالي المصروفات</div>
+          <div class="kpi-label">💸 مصاريف الورد</div>
           <div class="kpi-val"><span class="kpi-cur">ر.ع</span>216.5</div>
-          <div class="kpi-change"><span style="color:var(--muted)">ورد + مستلزمات</span></div>
+          <div class="kpi-change">ورد + مستلزمات</div>
         </div>
         <div class="kpi-card gold">
-          <div class="kpi-label">📈 صافي الربح</div>
+          <div class="kpi-label">📈 الربح الإجمالي</div>
           <div class="kpi-val" style="color:var(--success)"><span class="kpi-cur">ر.ع</span>438.9</div>
-          <div class="kpi-change"><span class="kpi-up">▲ ممتاز</span> 15 يوم فقط</div>
+          <div class="kpi-change"><span class="kpi-up">▲ 67%</span> قبل التكاليف الثابتة</div>
         </div>
         <div class="kpi-card blue">
           <div class="kpi-label">⚠️ ديون مستحقة</div>
           <div class="kpi-val" style="color:var(--danger)"><span class="kpi-cur">ر.ع</span>45.4</div>
-          <div class="kpi-change"><span class="kpi-down">2 فواتير</span> غير مدفوعة</div>
+          <div class="kpi-change"><span class="kpi-dn">2 فواتير</span> Flower Gate</div>
         </div>
       </div>
+
+      <!-- التكاليف الثابتة -->
+      <div style="font-size:.82rem;font-weight:500;color:var(--muted);margin-bottom:10px;letter-spacing:.5px">التكاليف الثابتة الشهرية</div>
+      <div class="fixed-costs-grid">
+        <div class="kpi-card amber">
+          <div class="kpi-label">🏠 الإيجار</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>315.0</div>
+          <div class="kpi-change">ثابت / شهر</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-label">👤 راتب العامل</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>271.0</div>
+          <div class="kpi-change">ثابت / شهر</div>
+        </div>
+        <div class="kpi-card blue">
+          <div class="kpi-label">💳 عمولة البنك (1.26%)</div>
+          <div class="kpi-val"><span class="kpi-cur">ر.ع</span>5.9</div>
+          <div class="kpi-change">من 470.8 ر.ع فيزا</div>
+        </div>
+      </div>
+
+      <!-- صافي الربح الحقيقي -->
+      <div class="net-box neg">
+        <div>
+          <div class="net-label"><strong>صافي الربح الحقيقي (بعد كل التكاليف)</strong></div>
+          <div class="net-sub">مبيعات 655.4 − ورد 216.5 − إيجار 315 − راتب 271 − بنك 5.9</div>
+        </div>
+        <div class="net-val" style="color:var(--danger)">−153.0 ر.ع</div>
+      </div>
+      <div class="info-bar">💡 <strong>ملاحظة:</strong> الأرقام لـ 18 يوم فقط. التكاليف الثابتة (586 ر.ع) محسوبة للشهر كاملاً. عند اكتمال الشهر ستتحسن الأرباح تلقائياً.</div>
 
       <div class="charts-row">
         <div class="chart-card">
           <div class="chart-title">
             <span>المبيعات اليومية</span>
-            <div class="filter-tabs">
-              <button class="tab active" onclick="filterSales('all',this)">الكل</button>
-              <button class="tab" onclick="filterSales('w1',this)">الأسبوع ١</button>
-              <button class="tab" onclick="filterSales('w2',this)">الأسبوع ٢</button>
+            <div style="display:flex;gap:6px">
+              <button class="tab active" onclick="flt('all',this)">الكل</button>
+              <button class="tab" onclick="flt('w1',this)">أسبوع ١</button>
+              <button class="tab" onclick="flt('w2',this)">أسبوع ٢</button>
+              <button class="tab" onclick="flt('w3',this)">أسبوع ٣</button>
             </div>
           </div>
-          <div class="chart-legend" style="margin-bottom:12px">
-            <span class="leg-item"><span class="leg-dot" style="background:#1D9E75"></span>فيزا</span>
-            <span class="leg-item"><span class="leg-dot" style="background:#378ADD"></span>نقدي</span>
-            <span class="leg-item"><span class="leg-dot" style="background:#BA7517"></span>تحويل</span>
+          <div style="display:flex;gap:12px;margin-bottom:10px;font-size:.75rem;color:var(--muted)">
+            <span><span style="display:inline-block;width:10px;height:10px;background:#1D9E75;border-radius:2px;margin-left:4px"></span>فيزا</span>
+            <span><span style="display:inline-block;width:10px;height:10px;background:#378ADD;border-radius:2px;margin-left:4px"></span>نقدي</span>
+            <span><span style="display:inline-block;width:10px;height:10px;background:#BA7517;border-radius:2px;margin-left:4px"></span>تحويل</span>
           </div>
-          <div style="position:relative;height:220px">
-            <canvas id="salesChart" role="img" aria-label="مبيعات مايو اليومية">مبيعات 1-15 مايو 2026.</canvas>
-          </div>
+          <div style="position:relative;height:210px"><canvas id="sc"></canvas></div>
         </div>
         <div class="chart-card">
           <div class="chart-title">توزيع طرق الدفع</div>
-          <div style="position:relative;height:180px">
-            <canvas id="payChart" role="img" aria-label="توزيع الدفع">فيزا 72%، نقدي 15.5%، تحويل 12.5%.</canvas>
-          </div>
-          <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
-            <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">💳 فيزا</span><span>434.5 ر.ع (72%)</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">💵 نقدي</span><span>93.3 ر.ع (15.5%)</span></div>
-            <div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--muted)">🏦 تحويل</span><span>75.5 ر.ع (12.5%)</span></div>
+          <div style="position:relative;height:170px"><canvas id="pc"></canvas></div>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;font-size:.8rem"><span style="color:var(--muted)">💳 فيزا</span><span>470.8 ر.ع (71.8%)</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:.8rem"><span style="color:var(--muted)">💵 نقدي</span><span>109.1 ر.ع (16.6%)</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:.8rem"><span style="color:var(--muted)">🏦 تحويل</span><span>75.5 ر.ع (11.5%)</span></div>
           </div>
         </div>
       </div>
@@ -280,231 +212,178 @@ tr:hover td{background:var(--cream)}
       <div class="row2">
         <div class="table-card">
           <div class="table-title">🏆 أفضل المنتجات</div>
-          <div id="topProds"></div>
+          <div id="pp"></div>
         </div>
         <div class="table-card">
           <div class="table-title">📅 أفضل الأيام</div>
-          <table>
-            <thead><tr><th>التاريخ</th><th>اليوم</th><th>المبيعات</th></tr></thead>
-            <tbody>
-              <tr><td>13/05</td><td>الأربعاء</td><td style="color:var(--success);font-weight:500">121.6 ر.ع 🏆</td></tr>
-              <tr><td>06/05</td><td>الأربعاء</td><td>78.1 ر.ع</td></tr>
-              <tr><td>02/05</td><td>السبت</td><td>54.0 ر.ع</td></tr>
-              <tr><td>15/05</td><td>الجمعة</td><td>50.4 ر.ع</td></tr>
-              <tr><td>07/05</td><td>الخميس</td><td>47.4 ر.ع</td></tr>
-              <tr><td>12/05</td><td>الثلاثاء</td><td style="color:var(--danger)">9.5 ر.ع ↓</td></tr>
-            </tbody>
-          </table>
+          <table><thead><tr><th>التاريخ</th><th>اليوم</th><th>المبيعات</th></tr></thead><tbody>
+            <tr><td>13/05</td><td>الأربعاء</td><td style="color:var(--success);font-weight:500">121.6 ر.ع 🏆</td></tr>
+            <tr><td>06/05</td><td>الأربعاء</td><td>78.1 ر.ع</td></tr>
+            <tr><td>02/05</td><td>السبت</td><td>54.0 ر.ع</td></tr>
+            <tr><td>15/05</td><td>الجمعة</td><td>50.4 ر.ع</td></tr>
+            <tr><td>17/05</td><td>الأحد</td><td>27.9 ر.ع</td></tr>
+            <tr><td>16/05</td><td>السبت</td><td style="color:var(--danger)">1.3 ر.ع ↓</td></tr>
+          </tbody></table>
         </div>
       </div>
     </div>
 
-    <!-- PAGE: SALES -->
+    <!-- SALES -->
     <div class="page" id="page-sales">
-      <div class="topbar">
-        <div><div class="page-title">تفاصيل المبيعات</div><div class="page-sub">مايو 2026 — 15 يوم</div></div>
-      </div>
+      <div class="topbar"><div><div class="page-title">تفاصيل المبيعات</div><div class="page-sub">1–18 مايو 2026</div></div></div>
       <div class="kpi-grid">
         <div class="kpi-card green"><div class="kpi-label">إجمالي المبيعات</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>655.4</div></div>
-        <div class="kpi-card blue"><div class="kpi-label">متوسط اليومي</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>40.2</div></div>
-        <div class="kpi-card gold"><div class="kpi-label">أعلى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>45.4</div><div class="kpi-change">13 مايو</div></div>
-        <div class="kpi-card red"><div class="kpi-label">أدنى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>5.4</div><div class="kpi-change">09 مايو</div></div>
+        <div class="kpi-card blue"><div class="kpi-label">متوسط يومي</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>36.4</div></div>
+        <div class="kpi-card gold"><div class="kpi-label">أعلى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>121.6</div><div class="kpi-change">13 مايو</div></div>
+        <div class="kpi-card red"><div class="kpi-label">أدنى يوم</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>1.3</div><div class="kpi-change">16 مايو</div></div>
       </div>
-      <div class="chart-card" style="margin-bottom:20px">
-        <div class="chart-title">المبيعات اليومية التفصيلية</div>
-        <div style="position:relative;height:260px">
-          <canvas id="salesChart2" role="img" aria-label="مبيعات مايو التفصيلية">مبيعات يومية 1-15 مايو.</canvas>
-        </div>
+      <div class="chart-card" style="margin-bottom:18px">
+        <div class="chart-title">المبيعات اليومية الكاملة</div>
+        <div style="position:relative;height:250px"><canvas id="sc2"></canvas></div>
       </div>
       <div class="table-card">
-        <div class="table-title">السجل اليومي الكامل</div>
-        <table>
-          <thead><tr><th>التاريخ</th><th>اليوم</th><th>نقدي</th><th>فيزا</th><th>تحويل</th><th>الإجمالي</th><th>شراء ورد</th><th>مصاريف</th></tr></thead>
-          <tbody id="salesTableBody"></tbody>
-        </table>
+        <div class="table-title">السجل اليومي الكامل (1–18 مايو)</div>
+        <table><thead><tr><th>التاريخ</th><th>اليوم</th><th>نقدي</th><th>فيزا</th><th>تحويل</th><th>الإجمالي</th><th>ورد</th></tr></thead>
+        <tbody id="stb"></tbody></table>
       </div>
     </div>
 
-    <!-- PAGE: INVOICES -->
+    <!-- INVOICES -->
     <div class="page" id="page-invoices">
-      <div class="topbar">
-        <div><div class="page-title">الفواتير</div><div class="page-sub">21 فاتورة — مايو 2026</div></div>
-      </div>
+      <div class="topbar"><div><div class="page-title">الفواتير</div><div class="page-sub">21 فاتورة — مايو 2026</div></div></div>
       <div class="kpi-grid">
         <div class="kpi-card blue"><div class="kpi-label">إجمالي الفواتير</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>406.7</div></div>
-        <div class="kpi-card green"><div class="kpi-label">المدفوع</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>237.8</div></div>
-        <div class="kpi-card red"><div class="kpi-label">غير مدفوع</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>150.3</div></div>
+        <div class="kpi-card green"><div class="kpi-label">المدفوع</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>361.3</div></div>
+        <div class="kpi-card red"><div class="kpi-label">غير مدفوع</div><div class="kpi-val"><span class="kpi-cur">ر.ع</span>45.4</div></div>
         <div class="kpi-card gold"><div class="kpi-label">عدد الفواتير</div><div class="kpi-val">21</div></div>
       </div>
-      <div class="inv-grid" id="invGrid"></div>
+      <div class="inv-grid" id="ig"></div>
     </div>
 
-    <!-- PAGE: DEBTS -->
+    <!-- DEBTS -->
     <div class="page" id="page-debts">
-      <div class="topbar">
-        <div><div class="page-title">الديون المستحقة</div><div class="page-sub">يجب المتابعة مع الموردين</div></div>
-      </div>
-      <div class="debt-total-box">
-        <div><div class="debt-total-label">إجمالي الديون المستحقة</div><div style="font-size:.8rem;color:var(--muted);margin-top:2px">2 فواتير غير مدفوعة</div></div>
-        <div class="debt-total-val">45.4 ر.ع</div>
+      <div class="topbar"><div><div class="page-title">الديون المستحقة</div><div class="page-sub">يجب السداد قريباً</div></div></div>
+      <div class="debt-total">
+        <div><div style="font-size:.85rem;color:var(--muted)">إجمالي الديون المستحقة</div><div style="font-size:.78rem;color:var(--muted);margin-top:2px">2 فواتير — Flower Gate فقط</div></div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--danger)">45.4 ر.ع</div>
       </div>
       <div class="table-card">
         <div class="table-title">تفاصيل الديون</div>
-        <table>
-          <thead><tr><th>رقم الفاتورة</th><th>التاريخ</th><th>المورد</th><th>الإجمالي</th><th>المدفوع</th><th>المتبقي</th><th>الحالة</th></tr></thead>
-          <tbody id="debtTableBody"></tbody>
-        </table>
+        <table><thead><tr><th>رقم الفاتورة</th><th>التاريخ</th><th>المورد</th><th>الإجمالي</th><th>المدفوع</th><th>المتبقي</th><th>الحالة</th></tr></thead>
+        <tbody id="dtb"></tbody></table>
       </div>
-      <div class="chart-card" style="margin-top:20px">
+      <div class="chart-card" style="margin-top:18px">
         <div class="chart-title">توزيع الديون حسب المورد</div>
-        <div style="position:relative;height:200px">
-          <canvas id="debtChart" role="img" aria-label="توزيع الديون">ديون الموردين.</canvas>
-        </div>
+        <div style="position:relative;height:180px"><canvas id="dc"></canvas></div>
       </div>
     </div>
 
   </div>
 </div>
-
 <script>
-const PASS = 'alyasi2026';
+const PASS='alyasi2026';
+function login(){const v=document.getElementById('pi').value;if(v===PASS){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';init();}else{const e=document.getElementById('le');e.style.display='block';setTimeout(()=>e.style.display='none',2000);}}
+function logout(){document.getElementById('app').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('pi').value='';}
+function pg(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');el.classList.add('active');}
 
-function doLogin(){
-  const v=document.getElementById('passInput').value;
-  if(v===PASS){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';initCharts();}
-  else{const e=document.getElementById('loginErr');e.style.display='block';setTimeout(()=>e.style.display='none',2000);}
-}
-function logout(){document.getElementById('app').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('passInput').value='';}
-function showPage(id,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  el.classList.add('active');
-}
-
-const dailyData=[
-  {d:'01/05',day:'الجمعة',cash:4.7,visa:23.3,btr:0,total:28.0,fbuy:0,other:0},
-  {d:'02/05',day:'السبت',cash:4.7,visa:31.8,btr:17.5,total:54.0,fbuy:0,other:0},
-  {d:'03/05',day:'الأحد',cash:0,visa:7.2,btr:10.0,total:17.2,fbuy:0,other:1.1},
-  {d:'04/05',day:'الاثنين',cash:0,visa:27.0,btr:0,total:27.0,fbuy:18.5,other:0},
-  {d:'05/05',day:'الثلاثاء',cash:12.5,visa:21.6,btr:6.0,total:40.1,fbuy:13.1,other:0},
-  {d:'06/05',day:'الأربعاء',cash:25.3,visa:52.8,btr:0,total:78.1,fbuy:9.5,other:8.0},
-  {d:'07/05',day:'الخميس',cash:2.4,visa:45.0,btr:0,total:47.4,fbuy:0,other:0},
-  {d:'08/05',day:'الجمعة',cash:7.9,visa:13.0,btr:0,total:20.9,fbuy:25.4,other:0},
-  {d:'09/05',day:'السبت',cash:1.9,visa:3.5,btr:0,total:5.4,fbuy:0,other:1.4},
-  {d:'10/05',day:'الأحد',cash:10.0,visa:15.9,btr:0,total:25.9,fbuy:9.0,other:0},
-  {d:'11/05',day:'الاثنين',cash:3.0,visa:39.0,btr:0,total:42.0,fbuy:0,other:0},
-  {d:'12/05',day:'الثلاثاء',cash:0,visa:9.5,btr:0,total:9.5,fbuy:0,other:0},
-  {d:'13/05',day:'الأربعاء',cash:13.9,visa:85.7,btr:22.0,total:121.6,fbuy:15.0,other:0},
-  {d:'14/05',day:'الخميس',cash:0.3,visa:30.5,btr:5.0,total:35.8,fbuy:17.789,other:0},
-  {d:'15/05',day:'الجمعة',cash:6.7,visa:28.7,btr:15.0,total:50.4,fbuy:0,other:0},
+const dD=[
+  {d:'01/05',day:'الجمعة',c:4.7,v:23.3,b:0,t:28.0,f:0},
+  {d:'02/05',day:'السبت',c:4.7,v:31.8,b:17.5,t:54.0,f:0},
+  {d:'03/05',day:'الأحد',c:0,v:7.2,b:10.0,t:17.2,f:0},
+  {d:'04/05',day:'الاثنين',c:0,v:27.0,b:0,t:27.0,f:18.5},
+  {d:'05/05',day:'الثلاثاء',c:12.5,v:21.6,b:6.0,t:40.1,f:13.1},
+  {d:'06/05',day:'الأربعاء',c:25.3,v:52.8,b:0,t:78.1,f:9.5},
+  {d:'07/05',day:'الخميس',c:2.4,v:45.0,b:0,t:47.4,f:0},
+  {d:'08/05',day:'الجمعة',c:7.9,v:13.0,b:0,t:20.9,f:25.4},
+  {d:'09/05',day:'السبت',c:1.9,v:3.5,b:0,t:5.4,f:0},
+  {d:'10/05',day:'الأحد',c:10.0,v:15.9,b:0,t:25.9,f:9.0},
+  {d:'11/05',day:'الاثنين',c:3.0,v:39.0,b:0,t:42.0,f:0},
+  {d:'12/05',day:'الثلاثاء',c:0,v:9.5,b:0,t:9.5,f:0},
+  {d:'13/05',day:'الأربعاء',c:13.9,v:85.7,b:22.0,t:121.6,f:15.0},
+  {d:'14/05',day:'الخميس',c:0.3,v:30.5,b:5.0,t:35.8,f:17.789},
+  {d:'15/05',day:'الجمعة',c:6.7,v:28.7,b:15.0,t:50.4,f:0},
+  {d:'16/05',day:'السبت',c:0.8,v:0.5,b:0,t:1.3,f:18.6},
+  {d:'17/05',day:'الأحد',c:15.0,v:12.9,b:0,t:27.9,f:79.1},
+  {d:'18/05',day:'الاثنين',c:0,v:22.9,b:0,t:22.9,f:0},
 ];
 
-const invoicesData=[
-  {no:'59733',date:'04/05',sup:'Zohoor Al-Firdous',total:16.8,paid:16.8,status:'مدفوع'},
-  {no:'6C177',date:'15/04',sup:'Zohoor Al-Firdous',total:10.5,paid:10.5,status:'مدفوع'},
-  {no:'19015',date:'19/04',sup:"A'Sarooj Flower",total:10.3,paid:10.3,status:'مدفوع'},
-  {no:'19463',date:'24/04',sup:"A'Sarooj Flower",total:106.26,paid:106.26,status:'مدفوع'},
-  {no:'6C568',date:'24/04',sup:'Zohoor Al-Firdous',total:8.0,paid:8.0,status:'مدفوع'},
-  {no:'6C582',date:'25/04',sup:'Zohoor Al-Firdous',total:13.1,paid:13.1,status:'مدفوع'},
-  {no:'59749',date:'05/05',sup:'Zohoor Al-Firdous',total:9.5,paid:9.5,status:'مدفوع'},
-  {no:'35774',date:'12/04',sup:'Flower Gate',total:9.5,paid:9.5,status:'مدفوع'},
-  {no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,status:'جزئي'},
-  {no:'6C219',date:'17/04',sup:'Zohoor Al-Firdous',total:46.4,paid:46.4,status:'مدفوع'},
-  {no:'61956',date:'09/05',sup:'Zohoor Al-Firdous',total:18.6,paid:18.6,status:'مدفوع'},
-  {no:'56761',date:'06/05',sup:'Basmah Gifts',total:8.041,paid:8.041,status:'مدفوع'},
-  {no:'INV13006536',date:'09/05',sup:'Al Manara',total:1.47,paid:1.47,status:'مدفوع'},
-  {no:'223871',date:'03/05',sup:'LuLu Hypermarket',total:1.17,paid:1.17,status:'مدفوع'},
-  {no:'61248',date:'10/05',sup:'Zohoor Al-Firdous',total:14.5,paid:14.5,status:'مدفوع'},
-  {no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,status:'غير مدفوع'},
-  {no:'62309',date:'13/05',sup:'Zohoor Al-Firdous',total:20.3,paid:20.3,status:'مدفوع'},
-  {no:'56655',date:'13/05',sup:'Basmah Gifts',total:6.239,paid:6.239,status:'مدفوع'},
-  {no:'56767',date:'14/05',sup:'Basmah Gifts',total:11.55,paid:11.55,status:'مدفوع'},
-  {no:'62334',date:'16/05',sup:'Zohoor Al-Firdous',total:21.0,paid:21.0,status:'مدفوع'},
+const iD=[
+  {no:'59733',date:'04/05',sup:'Zohoor',total:16.8,paid:16.8,st:'مدفوع'},
+  {no:'6C177',date:'15/04',sup:'Zohoor',total:10.5,paid:10.5,st:'مدفوع'},
+  {no:'19015',date:'19/04',sup:"A'Sarooj",total:10.3,paid:10.3,st:'مدفوع'},
+  {no:'19463',date:'24/04',sup:"A'Sarooj",total:106.26,paid:106.26,st:'مدفوع'},
+  {no:'6C568',date:'24/04',sup:'Zohoor',total:8.0,paid:8.0,st:'مدفوع'},
+  {no:'6C582',date:'25/04',sup:'Zohoor',total:13.1,paid:13.1,st:'مدفوع'},
+  {no:'59749',date:'05/05',sup:'Zohoor',total:9.5,paid:9.5,st:'مدفوع'},
+  {no:'35774',date:'12/04',sup:'Flower Gate',total:9.5,paid:9.5,st:'مدفوع'},
+  {no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,st:'جزئي'},
+  {no:'6C219',date:'17/04',sup:'Zohoor',total:46.4,paid:46.4,st:'مدفوع'},
+  {no:'61956',date:'09/05',sup:'Zohoor',total:18.6,paid:18.6,st:'مدفوع'},
+  {no:'56761',date:'06/05',sup:'Basmah',total:8.041,paid:8.041,st:'مدفوع'},
+  {no:'INV13006536',date:'09/05',sup:'Manara',total:1.47,paid:1.47,st:'مدفوع'},
+  {no:'223871',date:'03/05',sup:'LuLu',total:1.17,paid:1.17,st:'مدفوع'},
+  {no:'61248',date:'10/05',sup:'Zohoor',total:14.5,paid:14.5,st:'مدفوع'},
+  {no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,st:'غير مدفوع'},
+  {no:'62309',date:'13/05',sup:'Zohoor',total:20.3,paid:20.3,st:'مدفوع'},
+  {no:'56655',date:'13/05',sup:'Basmah',total:6.239,paid:6.239,st:'مدفوع'},
+  {no:'56767',date:'14/05',sup:'Basmah',total:11.55,paid:11.55,st:'مدفوع'},
+  {no:'62334',date:'16/05',sup:'Zohoor',total:21.0,paid:21.0,st:'مدفوع'},
+  {no:'62334-b',date:'16/05',sup:'Zohoor',total:0,paid:0,st:''},
 ];
 
-const debtsData=[{no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,bal:28.1},{no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,bal:17.3}];
+const debts=[
+  {no:'38457',date:'06/05',sup:'Flower Gate',total:37.6,paid:9.5,bal:28.1},
+  {no:'FG-13883',date:'13/05',sup:'Flower Gate',total:17.3,paid:0,bal:17.3},
+];
 
-let salesChartObj=null, salesChart2Obj=null;
-const allLabels=dailyData.map(d=>d.d);
-const allVisa=dailyData.map(d=>d.visa);
-const allCash=dailyData.map(d=>d.cash);
-const allBtr=dailyData.map(d=>d.btr);
+let sc1=null,sc2=null;
+const aL=dD.map(d=>d.d),aV=dD.map(d=>d.v),aC=dD.map(d=>d.c),aB=dD.map(d=>d.b);
 
-function makeSalesChart(id,labels,visa,cash,btr){
-  return new Chart(document.getElementById(id),{
-    type:'bar',
-    data:{labels,datasets:[
-      {label:'فيزا',data:visa,backgroundColor:'#1D9E75',stack:'s'},
-      {label:'نقدي',data:cash,backgroundColor:'#378ADD',stack:'s'},
-      {label:'تحويل',data:btr,backgroundColor:'#BA7517',stack:'s'}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y.toFixed(1)} ر.ع`}}},
-      scales:{
-        x:{ticks:{font:{size:10},autoSkip:false,maxRotation:0},grid:{display:false}},
-        y:{ticks:{callback:v=>v+' ر.ع',font:{size:10}},grid:{color:'rgba(128,128,128,0.08)'}}
-      }
-    }
-  });
+function mkBar(id,l,v,c,b){
+  return new Chart(document.getElementById(id),{type:'bar',data:{labels:l,datasets:[
+    {label:'فيزا',data:v,backgroundColor:'#1D9E75',stack:'s'},
+    {label:'نقدي',data:c,backgroundColor:'#378ADD',stack:'s'},
+    {label:'تحويل',data:b,backgroundColor:'#BA7517',stack:'s'}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y.toFixed(1)} ر.ع`}}},scales:{x:{ticks:{font:{size:10},autoSkip:false,maxRotation:0},grid:{display:false}},y:{ticks:{callback:v=>v+' ر.ع',font:{size:10}},grid:{color:'rgba(128,128,128,0.08)'}}}}});
 }
 
-function filterSales(f,btn){
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+function flt(f,btn){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
   let l,v,c,b;
-  if(f==='w1'){l=allLabels.slice(0,7);v=allVisa.slice(0,7);c=allCash.slice(0,7);b=allBtr.slice(0,7);}
-  else if(f==='w2'){l=allLabels.slice(7);v=allVisa.slice(7);c=allCash.slice(7);b=allBtr.slice(7);}
-  else{l=allLabels;v=allVisa;c=allCash;b=allBtr;}
-  salesChartObj.data.labels=l;
-  salesChartObj.data.datasets[0].data=v;
-  salesChartObj.data.datasets[1].data=c;
-  salesChartObj.data.datasets[2].data=b;
-  salesChartObj.update();
+  if(f==='w1'){l=aL.slice(0,7);v=aV.slice(0,7);c=aC.slice(0,7);b=aB.slice(0,7);}
+  else if(f==='w2'){l=aL.slice(7,14);v=aV.slice(7,14);c=aC.slice(7,14);b=aB.slice(7,14);}
+  else if(f==='w3'){l=aL.slice(14);v=aV.slice(14);c=aC.slice(14);b=aB.slice(14);}
+  else{l=aL;v=aV;c=aC;b=aB;}
+  sc1.data.labels=l;sc1.data.datasets[0].data=v;sc1.data.datasets[1].data=c;sc1.data.datasets[2].data=b;sc1.update();
 }
 
-function initCharts(){
-  salesChartObj=makeSalesChart('salesChart',allLabels,allVisa,allCash,allBtr);
-  salesChart2Obj=makeSalesChart('salesChart2',allLabels,allVisa,allCash,allBtr);
+function init(){
+  sc1=mkBar('sc',aL,aV,aC,aB);
+  sc2=mkBar('sc2',aL,aV,aC,aB);
 
-  new Chart(document.getElementById('payChart'),{
-    type:'doughnut',
-    data:{labels:['فيزا','نقدي','تحويل'],datasets:[{data:[434.5,93.3,75.5],backgroundColor:['#1D9E75','#378ADD','#BA7517'],borderWidth:0}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:'72%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.label}: ${c.parsed.toFixed(1)} ر.ع`}}}}
+  new Chart(document.getElementById('pc'),{type:'doughnut',data:{labels:['فيزا','نقدي','تحويل'],datasets:[{data:[470.8,109.1,75.5],backgroundColor:['#1D9E75','#378ADD','#BA7517'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'72%',plugins:{legend:{display:false}}}});
+
+  new Chart(document.getElementById('dc'),{type:'bar',data:{labels:['Flower Gate','Zohoor','Basmah'],datasets:[{data:[45.4,0,0],backgroundColor:['#E24B4A','#BA7517','#888780'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.parsed.y.toFixed(1)} ر.ع`}}},scales:{y:{ticks:{callback:v=>v+' ر.ع',font:{size:10}},grid:{color:'rgba(128,128,128,0.08)'}},x:{grid:{display:false}}}}});
+
+  const prods=[{n:'Flower Bouquet',v:185},{n:'Rose',v:108},{n:'Flower',v:90},{n:'Raping/Wrap',v:44},{n:'Lily',v:39}];
+  const pEl=document.getElementById('pp');
+  prods.forEach((p,i)=>{pEl.innerHTML+=`<div class="prod-row"><div class="prod-rank ${i===0?'gold':''}">${i+1}</div><div class="prod-name">${p.n}</div><div class="prod-bar-wrap"><div class="prod-bar" style="width:${Math.round(p.v/185*100)}%"></div></div><div class="prod-val">${p.v.toFixed(1)} ر.ع</div></div>`;});
+
+  const stb=document.getElementById('stb');
+  dD.forEach(d=>{stb.innerHTML+=`<tr><td>${d.d}</td><td>${d.day}</td><td>${d.c.toFixed(1)}</td><td>${d.v.toFixed(1)}</td><td>${d.b.toFixed(1)}</td><td style="font-weight:500">${d.t.toFixed(1)}</td><td style="color:var(--danger)">${d.f>0?d.f.toFixed(1):'—'}</td></tr>`;});
+
+  const ig=document.getElementById('ig');
+  iD.filter(i=>i.total>0).forEach(i=>{
+    const pct=i.total>0?Math.round(i.paid/i.total*100):0;
+    const bc=i.st==='مدفوع'?'b-green':i.st==='جزئي'?'b-amber':'b-red';
+    const fc=i.st==='مدفوع'?'#1D9E75':i.st==='جزئي'?'#BA7517':'#E24B4A';
+    ig.innerHTML+=`<div class="inv-card"><div class="inv-header"><span class="inv-num">#${i.no}</span><span class="badge ${bc}">${i.st}</span></div><div class="inv-sup">${i.sup}</div><div class="inv-date">${i.date}</div><div class="inv-amount">${i.total.toFixed(2)} <small style="font-size:.72rem;color:var(--muted);font-family:'Tajawal',sans-serif">ر.ع</small></div><div class="inv-paid">مدفوع: ${i.paid.toFixed(2)} | متبقي: ${(i.total-i.paid).toFixed(2)}</div><div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:${pct}%;background:${fc}"></div></div></div>`;
   });
 
-  const debtBySup={'Flower Gate':45.4,'Zohoor':0,'Basmah':0};
-  new Chart(document.getElementById('debtChart'),{
-    type:'bar',
-    data:{labels:Object.keys(debtBySup),datasets:[{label:'الدين',data:Object.values(debtBySup),backgroundColor:['#E24B4A','#BA7517','#888780'],borderRadius:6}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.parsed.y.toFixed(1)} ر.ع`}}},scales:{y:{ticks:{callback:v=>v+' ر.ع',font:{size:10}},grid:{color:'rgba(128,128,128,0.08)'}},x:{grid:{display:false}}}}
-  });
-
-  const prods=[{n:'Flower Bouquet',v:180.9},{n:'Rose',v:105.6},{n:'Flower',v:88.0},{n:'Raping/Wrapping',v:42.0},{n:'Lily',v:38.9},{n:'Kesantemuen',v:15.0}];
-  const pEl=document.getElementById('topProds');
-  prods.forEach((p,i)=>{
-    pEl.innerHTML+=`<div class="prod-row"><div class="prod-rank ${i===0?'gold':''}">${i+1}</div><div class="prod-name">${p.n}</div><div class="prod-bar-wrap"><div class="prod-bar" style="width:${Math.round(p.v/180.9*100)}%"></div></div><div class="prod-val">${p.v.toFixed(1)} ر.ع</div></div>`;
-  });
-
-  const tb=document.getElementById('salesTableBody');
-  dailyData.forEach(d=>{
-    const exp=d.fbuy+d.other;
-    const profit=d.total-exp;
-    tb.innerHTML+=`<tr><td>${d.d}</td><td>${d.day}</td><td>${d.cash.toFixed(1)}</td><td>${d.visa.toFixed(1)}</td><td>${d.btr.toFixed(1)}</td><td style="font-weight:500">${d.total.toFixed(1)}</td><td style="color:var(--danger)">${d.fbuy>0?d.fbuy.toFixed(1):'—'}</td><td style="color:var(--muted)">${d.other>0?d.other.toFixed(1):'—'}</td></tr>`;
-  });
-
-  const ig=document.getElementById('invGrid');
-  invoicesData.forEach(inv=>{
-    const pct=inv.total>0?Math.round(inv.paid/inv.total*100):0;
-    const badgeCls=inv.status==='مدفوع'?'badge-green':inv.status==='جزئي'?'badge-amber':'badge-red';
-    const barColor=inv.status==='مدفوع'?'#1D9E75':inv.status==='جزئي'?'#BA7517':'#E24B4A';
-    ig.innerHTML+=`<div class="inv-card"><div class="inv-header"><span class="inv-num">#${inv.no}</span><span class="badge ${badgeCls}">${inv.status}</span></div><div class="inv-sup">${inv.sup}</div><div class="inv-date">${inv.date} مايو 2026</div><div class="inv-amount">${inv.total.toFixed(2)} <small style="font-size:.75rem;color:var(--muted);font-family:'Tajawal',sans-serif">ر.ع</small></div><div class="inv-paid">مدفوع: ${inv.paid.toFixed(2)} ر.ع | متبقي: ${(inv.total-inv.paid).toFixed(2)} ر.ع</div><div class="inv-bar-wrap"><div class="inv-bar-fill" style="width:${pct}%;background:${barColor}"></div></div></div>`;
-  });
-
-  const dtb=document.getElementById('debtTableBody');
-  debtsData.forEach(d=>{
-    const urgency=d.bal>20?'badge-red':d.bal>10?'badge-amber':'badge-gray';
-    dtb.innerHTML+=`<tr><td style="font-family:monospace;font-size:.78rem">#${d.no}</td><td>${d.date}</td><td>${d.sup}</td><td>${d.total.toFixed(2)}</td><td style="color:var(--success)">${d.paid.toFixed(2)}</td><td style="font-weight:500;color:var(--danger)">${d.bal.toFixed(2)}</td><td><span class="badge ${urgency}">${d.bal>20?'عاجل':d.bal>10?'متوسط':'منخفض'}</span></td></tr>`;
+  const dtb=document.getElementById('dtb');
+  debts.forEach(d=>{
+    const u=d.bal>20?'b-red':'b-amber';
+    dtb.innerHTML+=`<tr><td style="font-family:monospace;font-size:.76rem">#${d.no}</td><td>${d.date}</td><td>${d.sup}</td><td>${d.total.toFixed(2)}</td><td style="color:var(--success)">${d.paid.toFixed(2)}</td><td style="font-weight:500;color:var(--danger)">${d.bal.toFixed(2)}</td><td><span class="badge ${u}">${d.bal>20?'عاجل':'متوسط'}</span></td></tr>`;
   });
 }
 </script>
